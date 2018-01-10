@@ -5,20 +5,31 @@ function createComponents(){
 
     var buttonWidth = 300;
     
-    //Create buttons for spatial search functions
+    //SPATIAL SEARCH COMPONENTS///////////////////////////////
+    //Create buttons
     $("#spatialRemoveButton").jqxButton({ width: buttonWidth, height: 40 });
 	$("#spatialAddButton").jqxButton({ width: buttonWidth, height: 40 });
     $("#spatialUpdateButton").jqxButton({ width: buttonWidth, height: 40 });
     $("#spatialSubmitButton").jqxButton({ width: buttonWidth, height: 40 });
     
-    //Create buttons for text search functions
+    //TEXT SEARCH COMPONENTS//////////////////////////////////
+    //Create buttons
     $("#textSubmitButton").jqxButton({ width: buttonWidth, height: 40 });
     
+    //Create text fields
+    $("#textSearchField").jqxInput({ width: 300, height: 40 });
+    
+    var mymap = L.map('spatialSearchMap').setView([51.505, -0.09], 13);
+   
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(mymap);
+    
   	//Get dimensional properties 
-    var container = $('#main');
-    var containerOffset = container.offset();
-    var containerWidth = container.width();
-    var containerHeight = container.height();
+    //var container = $('#main');
+    //var containerOffset = container.offset();
+    //var containerWidth = container.width();
+    //var containerHeight = container.height();
     
 }
 
@@ -45,7 +56,7 @@ function initialize(){
 	
 }
 
-function performRESTCall(action, keyArray, valueArray){
+/*function performRESTCall(action, keyArray, valueArray){
 	
 	if(window.XMLHttpRequest){
         xmlhttp = new XMLHttpRequest();
@@ -61,11 +72,11 @@ function performRESTCall(action, keyArray, valueArray){
 				data = JSON.parse(xmlhttp.responseText);
 			}
 
-			/*if(data!=null && data.hasOwnProperty('error')){
+			if(data!=null && data.hasOwnProperty('error')){
 				document.getElementById("errorWindow_message").innerHTML = data.error;
 				$('#errorWindow').jqxWindow('open');
 				return;
-			}*/
+			}
 			
 			//PARSE JSON RETURNED DATA HERE
 			
@@ -84,4 +95,4 @@ function performRESTCall(action, keyArray, valueArray){
 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xmlhttp.send(post);
 	
-}
+}*/

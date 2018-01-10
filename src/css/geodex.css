@@ -1,9 +1,9 @@
 @CHARSET "UTF-8";
 
 div#main{
-    -webkit-column-count: 3; /* Chrome, Safari, Opera */
-    -moz-column-count: 3; /* Firefox */
-    column-count: 3;
+    -webkit-column-count: 1; /* Chrome, Safari, Opera */
+    -moz-column-count: 1; /* Firefox */
+    column-count: 1;
 }
 
 div#web{
@@ -11,4 +11,6 @@ div#web{
     -moz-column-count: 1; /* Firefox */
     column-count: 1;
     text-align: center;
+}
     
+div#spatialSearchMap { height: 180px; }
