@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	
+		<title>Geodex.org</title>
+		
+		<link rel="stylesheet" href="css/geodex.css" type="text/css" />
+		<link rel="stylesheet" href="js/jqwidgets/styles/jqx.base.css" type="text/css" />
+		
+		<script type="text/javascript" src="js/geodex/geodexcore.js"></script>
+		<script type="text/javascript" src="js/geodex/geodexspatialsearch.js"></script>
+		<script type="text/javascript" src="js/jquery/jquery-1.11.1.min.js"></script>
+		<script type="text/javascript" src="js/jqwidgets/jqxcore.js"></script>
+		<script type="text/javascript" src="js/jqwidgets/jqxbuttons.js"></script>
+		<script type="text/javascript" src="js/jqwidgets/jqxinput.js"></script>
+	
+	</head>
+
+	<body onload="initializeTextSearchPanel()">
+		
+		<div class='label'>
+			Enter Text Value:
+		</div>
+		
+		<div>
+			<input type="text" value="" id='textSearchValueField'/>
+		</div>
+		
+		<div>
+			<input type="button" value="Submit Search to Geodex.org" id='textSearchSubmitButton' />
+		</div>
+
+	</body>
+</html>

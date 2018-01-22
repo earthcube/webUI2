@@ -1,25 +1,6 @@
 @CHARSET "UTF-8";
 
-div#main{
-    -webkit-column-count: 1; /* Chrome, Safari, Opera */
-    -moz-column-count: 1; /* Firefox */
-    column-count: 1;
-    row-count: 1;
-}
-    
-div#spatialSearchMap { 
-	height: 100%; 
-	width: 50%
-}
-
-.spatialSearchMainRow{
-	display: inline-block;
-}
-
-.spatialSearchMainRow1{
-	display: inline-block;
-}
-
-.spatialSearchMainRow2{
-	display: inline-block;
+#spatialSearchMap { 
+	width: 600px; 
+	height: 500px; 
 }
