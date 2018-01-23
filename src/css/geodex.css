@@ -1,6 +1,152 @@
 @CHARSET "UTF-8";
 
+/*Text Search Components CSS*/
+.textSearchPanel{
+	display: grid;
+	grid-gap: 10px;
+	grid-template-columns: auto auto auto auto;
+}
+
+.textSearchValueLabel{
+	margin-top: 10px;
+	font-size: 13px; 
+	font-family: Verdana; 
+	text-align: right;
+}
+
+.textSearchValueField{
+	grid-column-start: 2;
+  	grid-column-end: 4;
+}
+
+.textSearchSubmitButton{
+
+}
+
+/*Spatial Search Components CSS*/
+
 #spatialSearchMap { 
-	width: 600px; 
-	height: 500px; 
+	width: 1000px; 
+	height: 800px; 
+}
+
+/*Master level grid container*/
+.spatialSearchPanel{
+	display: grid;
+	grid-row-gap: 15px;
+	grid-column-gap: 5px;
+	grid-template-columns: auto;
+	grid-template-rows: auto auto auto;
+}
+
+/*Top panel grid container*/
+.spatialSearchTopPanel{
+	display: grid;
+	grid-gap: 10px;
+	grid-template-columns: auto;
+	grid-template-rows: auto;
+}
+
+.spatialSearchMap{
+
+}
+
+
+/*Middle panel grid container*/
+.spatialSearchMiddlePanel{
+	display: grid;
+	grid-gap: 10px;
+	grid-template-columns: 500px 500px;
+	grid-template-rows: auto auto auto auto;
+}
+
+.spatialSearchLatLabel{
+	margin-top: 10px;
+	font-size: 13px; 
+	font-family: Verdana; 
+	text-align: left;
+	grid-column-start: 1;
+  	grid-column-end: 2;
+  	grid-row-start: 1;
+  	grid-row-end: 2;
+}
+
+.spatialSearchLatField{
+	grid-column-start: 1;
+  	grid-column-end: 2;
+  	grid-row-start: 2;
+  	grid-row-end: 3;
+}
+
+.spatialSearchLonLabel{
+	margin-top: 10px;
+	font-size: 13px; 
+	font-family: Verdana; 
+	text-align: left;
+	grid-column-start: 1;
+  	grid-column-end: 2;
+  	grid-row-start: 3;
+  	grid-row-end: 4;
+}
+
+.spatialSearchLonField{
+	grid-column-start: 1;
+  	grid-column-end: 2;
+  	grid-row-start: 4;
+  	grid-row-end: 5;
+}
+
+.spatialSearchListLabel{
+	margin-top: 10px;
+	font-size: 13px; 
+	font-family: Verdana; 
+	text-align: left;
+	grid-column-start: 2;
+  	grid-column-end: 3;
+  	grid-row-start: 1;
+  	grid-row-end: 2;
+}
+
+.spatialSearchListBox{
+	grid-column-start: 2;
+  	grid-column-end: 3;
+  	grid-row-start: 2;
+  	grid-row-end: 5;
+}
+
+/*Bottom panel grid container*/
+.spatialSearchBottomPanel{
+	display: grid;
+	grid-row-gap: 15px;
+	grid-column-gap: 5px;
+	grid-template-columns: 333px 333px 334px;
+	grid-template-rows: auto auto;
+}
+
+.spatialSearchUpdateButton{
+	grid-column-start: 1;
+  	grid-column-end: 2;
+  	grid-row-start: 1;
+  	grid-row-end: 2;		
+}
+
+.spatialSearchAddButton{
+	grid-column-start: 2;
+  	grid-column-end: 3;
+	grid-row-start: 1;
+  	grid-row-end: 2;	
+}
+
+.spatialSearchRemoveButton{
+	grid-column-start: 3;
+  	grid-column-end: 4;
+	grid-row-start: 1;
+  	grid-row-end: 2;	
+}
+
+.spatialSearchSubmitButton{
+	grid-column-start: 1;
+  	grid-column-end: 4;
+	grid-row-start: 2;
+  	grid-row-end: 3;	
 }

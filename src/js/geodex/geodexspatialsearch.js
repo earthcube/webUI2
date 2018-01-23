@@ -8,26 +8,22 @@ function initializeSpatialSearchPanel(){
         id: 'mapbox.streets',
         accessToken: 'pk.eyJ1IjoiZWxpbmdlcmYiLCJhIjoiY2pjamhlZTl1NGRxazJxbzU0OHE5d3ZxNyJ9.n7A_BBoZxnpA2izU3McwSQ'
     }).addTo(mymap);
-	
-    //Create buttons
-    $("#spatialSearchRemoveButton").jqxButton({ width: 300, height: 40 });
-	$("#spatialSearchAddButton").jqxButton({ width: 300, height: 40 });
-    $("#spatialSearchUpdateButton").jqxButton({ width: 300, height: 40 });
-    $("#spatialSearchSubmitButton").jqxButton({ width: 300, height: 40 });
     
     //Create fields for location entry
-   	$("#spatialSearchLatField").jqxInput({height: 40, width: 200});
-    $("#spatialSearchLonField").jqxInput({height: 40, width: 200});
+   	$("#spatialSearchLatField").jqxInput({height: 40, width: '100%'});
+    $("#spatialSearchLonField").jqxInput({height: 40, width: '100%'});
     
-     //Create list for holding locations
-    $("#spatialSearchListBox").jqxListBox({width: 200, height: 250 });
+    //Create buttons
+    $("#spatialSearchUpdateButton").jqxButton({ width: '100%', height: 40 });
+	$("#spatialSearchAddButton").jqxButton({ width: '100%', height: 40 });
+    $("#spatialSearchRemoveButton").jqxButton({ width: '100%', height: 40 });
+    $("#spatialSearchSubmitButton").jqxButton({ width: '100%', height: 40 });
     
-}
-
-function initialize(){
-	
-	//SPATIAL SEARCH BUTTON FUNCTIONS//////////////////////////
-	/*$('#spatialSearchUpdateButton').on('click', function (event) {
+    //Create list for holding locations
+    $("#spatialSearchListBox").jqxListBox({height: '100%', width: '100%'});
+    
+    //Add event listeners
+    /*$('#spatialSearchUpdateButton').on('click', function (event) {
 
 	});
 	$('#spatialSearchAddButton').on('click', function (event) {
@@ -39,5 +35,5 @@ function initialize(){
 	$('#spatialSearchSubmitButton').on('click', function (event) {
 
 	});*/
-	
+    
 }
