@@ -18,18 +18,22 @@
 
 	<body class='default' onload="initializeTextSearchPanel()">
 		
-		<div class='textSearchPanel'>
+		<div id='main'>
+		
+			<div class='textSearchPanel'>
+				
+				<div class='textSearchValueLabel'>
+					Enter Text Value:
+				</div>
+				
+				<div class='textSearchValueField'>
+					<input type="text" value="" id='textSearchValueField'/>
+				</div>
+				
+				<div class='textSearchSubmitButton'>
+					<input type="button" value="Submit Search to Geodex.org" id='textSearchSubmitButton' />
+				</div>
 			
-			<div class='textSearchValueLabel'>
-				Enter Text Value:
-			</div>
-			
-			<div class='textSearchValueField'>
-				<input type="text" value="" id='textSearchValueField'/>
-			</div>
-			
-			<div class='textSearchSubmitButton'>
-				<input type="button" value="Submit Search to Geodex.org" id='textSearchSubmitButton' />
 			</div>
 		
 		</div>

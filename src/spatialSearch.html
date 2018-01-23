@@ -25,55 +25,59 @@
 
 	<body class='default' onload="initializeSpatialSearchPanel()">
 		
-		<div class='spatialSearchPanel'>
+		<div id='main'>
 		
-			<div class='spatialSearchTopPanel' id='spatialSearchMap'>
-			</div>
+			<div class='spatialSearchPanel'>
 			
-			<div class='spatialSearchMiddlePanel'>
-			
-				<div class='spatialSearchLatLabel'>
-					Current Latitude: 
+				<div class='spatialSearchTopPanel' id='spatialSearchMap'>
 				</div>
 				
-				<div class='spatialSearchLatField'>
-					<input type="text" value="" id='spatialSearchLatField'/>
-				</div>
+				<div class='spatialSearchMiddlePanel'>
 				
-				<div class='spatialSearchLonLabel'>
-					Current Longtitude: 
-				</div>
+					<div class='spatialSearchLatLabel'>
+						Current Latitude: 
+					</div>
+					
+					<div class='spatialSearchLatField'>
+						<input type="text" value="" id='spatialSearchLatField'/>
+					</div>
+					
+					<div class='spatialSearchLonLabel'>
+						Current Longtitude: 
+					</div>
+					
+					<div class='spatialSearchLonField'>
+						<input type="text" value="" id='spatialSearchLonField'/>
+					</div>
+							
+					
+					<div class='spatialSearchListLabel'>
+						List of Selected Locations:
+					</div>
+					
+					<div  class='spatialSearchListBox' id='spatialSearchListBox'>
+					</div>
 				
-				<div class='spatialSearchLonField'>
-					<input type="text" value="" id='spatialSearchLonField'/>
 				</div>
-						
+				   
+				<div class='spatialSearchBottomPanel'>
+				   
+					<div class='spatialSearchUpdateButton'>
+						<input type="button" value="Update Location on Map" id='spatialSearchUpdateButton' />
+					</div>
+					
+					<div class='spatialSearchAddButton'>
+						<input type="button" value="Add Location to List" id='spatialSearchAddButton' />
+					</div>
+					
+					<div class='spatialSearchRemoveButton'>
+						<input type="button" value="Remove Location from List" id='spatialSearchRemoveButton' />
+					</div>
+					
+					<div class='spatialSearchSubmitButton'>
+						<input type="button" value="Submit Search to Geodex.org" id='spatialSearchSubmitButton' />
+					</div>
 				
-				<div class='spatialSearchListLabel'>
-					List of Selected Locations:
-				</div>
-				
-				<div  class='spatialSearchListBox' id='spatialSearchListBox'>
-				</div>
-			
-			</div>
-			   
-			<div class='spatialSearchBottomPanel'>
-			   
-				<div class='spatialSearchUpdateButton'>
-					<input type="button" value="Update Location on Map" id='spatialSearchUpdateButton' />
-				</div>
-				
-				<div class='spatialSearchAddButton'>
-					<input type="button" value="Add Location to List" id='spatialSearchAddButton' />
-				</div>
-				
-				<div class='spatialSearchRemoveButton'>
-					<input type="button" value="Remove Location from List" id='spatialSearchRemoveButton' />
-				</div>
-				
-				<div class='spatialSearchSubmitButton'>
-					<input type="button" value="Submit Search to Geodex.org" id='spatialSearchSubmitButton' />
 				</div>
 			
 			</div>
