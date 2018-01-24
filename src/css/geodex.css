@@ -51,21 +51,8 @@
 	grid-row-gap: 15px;
 	grid-column-gap: 5px;
 	grid-template-columns: auto;
-	grid-template-rows: auto auto auto;
+	grid-template-rows: auto auto;
 }
-
-/*Top panel grid container*/
-.spatialSearchTopPanel{
-	display: grid;
-	grid-gap: 10px;
-	grid-template-columns: auto;
-	grid-template-rows: auto;
-}
-
-.spatialSearchMap{
-
-}
-
 
 /*Middle panel grid container*/
 .spatialSearchMiddlePanel{
