@@ -24,37 +24,9 @@ var WebServiceActions = {
 	}
 }
 
-//Process the JSON response from the web call
-function processResponseData(webServiceAction, data){
-	
-	switch(webServiceAction){
-		case WebServiceActions.TEXTINDEX_SEARCH:
-			break;
-		case WebServiceActions.TEXTINDEX_SEARCHSET:
-			break;
-		case WebServiceActions.SPATIAL_SEARCH_OBJECT:
-			break;
-		case WebServiceActions.SPATIAL_SEARCH_RESOURCE:
-			break;
-		case WebServiceActions.SPATIAL_SEARCH_RESOURCESET:
-			break;
-		case WebServiceActions.TYPEAHEAD_PROVIDERS:
-			initializeIndexCheckBoxes(data);
-			break;
-		case WebServiceActions.GRAPH_RESDETAILS:
-			break;
-		case WebServiceActions.GRAPH_RESSETDETAILS:
-			break;
-		case WebServiceActions.GRAPH_RESSETPEOPLE:
-			break;
-	
-	}
-	
-}
-
 //Perform call to geodex web service
-function performWebServiceCall(webServiceAction, keyArray, valueArray){
-
+function performWebServiceCall(webServiceAction, keyArray, valueArray, updateFunction){
+	
 	//Add for IE calls
 	if(window.XMLHttpRequest){
         xmlhttp = new XMLHttpRequest();
@@ -64,9 +36,9 @@ function performWebServiceCall(webServiceAction, keyArray, valueArray){
 	
 	//Set listener for call completion
     xmlhttp.onreadystatechange = function() {
-		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
 			var data = JSON.parse(xmlhttp.responseText);
-			processResponseData(webServiceAction, data);
+			updateFunction(data);
 		}
 	};
 	

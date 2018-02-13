@@ -1,11 +1,13 @@
 var selectedIndexes = [];
+var totalNumIndexes = 0;
 var componentHeight = 30;
 
 function initializeIndexCheckBoxes(data){
 	
 	var columnCounter = 0;
 	var rowCounter = 0;
-
+	totalNumIndexes = data.length;
+	
 	for(i=0; i<data.length; i++){
 		
 		var parentDiv = document.getElementById(indexesParentElement);
@@ -14,7 +16,6 @@ function initializeIndexCheckBoxes(data){
 		newDiv.id = data[i]["index"];
  		parentDiv.appendChild(newDiv); 
 
- 		
  		$('#' + newDiv.id).jqxCheckBox({ width: 120, height: 25, checked: true});
  		selectedIndexes.push(newDiv.id);
  		

@@ -65,7 +65,7 @@ function initializeSpatialSearchPanel(){
     var containerHeight = container.height();
     
 	//Create error window 
-    $('#spatialSearchErrorWindow').jqxWindow({  
+    $('#geodexErrorWindow').jqxWindow({  
     		title: 'Attention!',
     		width: 400,
         height: 140, 
@@ -74,15 +74,29 @@ function initializeSpatialSearchPanel(){
         isModal: true,
         //position: { x: containerWidth/2 - 200, y: 300 - 70},
     });
-    $("#spatialSearchErrorWindowOKButton").jqxButton({ width: 75, height: 30 });
-    $("#spatialSearchErrorWindowOKButton").on("click", spatialSearchErrorWindowOKButtonClicked);
-  
+    $("#geodexErrorWindowOKButton").jqxButton({ width: 75, height: 30 });
+    $("#geodexErrorWindowOKButton").on("click", geodexErrorWindowOKButtonClicked);
+    
+    //Create wait window 
+    $('#geodexWaitWindow').jqxWindow({  
+    		title: 'Please Wait...',
+    		width: 400,
+        height: 140, 
+        resizable: true,
+        autoOpen: false,
+        isModal: true,
+        //position: { x: containerWidth/2 - 200, y: 300 - 70},
+    });
    
    	//Call and get current providers list
     var keyArray = [];
    	var valueArray = [];
-    performWebServiceCall(WebServiceActions.TYPEAHEAD_PROVIDERS, keyArray, valueArray);
+    performWebServiceCall(WebServiceActions.TYPEAHEAD_PROVIDERS, keyArray, valueArray, updateAfterTypeaheadProviders);
     
+}
+
+function updateAfterTypeaheadProviders(data){
+	initializeIndexCheckBoxes(data);
 }
 
 function badLocation(){
@@ -91,8 +105,8 @@ function badLocation(){
 	return isNaN(lat) || isNaN(lon);
 }
 
-function spatialSearchErrorWindowOKButtonClicked(){
-	$('#spatialSearchErrorWindow').jqxWindow('close');
+function geodexErrorWindowOKButtonClicked(){
+	$('#geodexErrorWindow').jqxWindow('close');
 }
 
 function spatialSearchUpdateButtonClicked(){
@@ -107,8 +121,8 @@ function spatialSearchUpdateButtonClicked(){
 		marker.setLatLng(latlng);
 		redrawMap();
 	}else{
-		document.getElementById("spatialSearchErrorWindowMessage").innerHTML = "Please enter numeric values for Latitude and Longitude.";
-		$('#spatialSearchErrorWindow').jqxWindow('open');
+		document.getElementById("geodexErrorWindowMessage").innerHTML = "Please enter numeric values for Latitude and Longitude.";
+		$('#geodexErrorWindow').jqxWindow('open');
 	}
 }
 
@@ -120,8 +134,8 @@ function spatialSearchAddButtonClicked(){
 		$("#spatialSearchListBox").jqxListBox('addItem', parseFloat(lat).toFixed(precision) + ", " + parseFloat(lon).toFixed(precision));
 		redrawMap();
 	}else{
-		document.getElementById("spatialSearchErrorWindowMessage").innerHTML = "Please enter numeric values for Latitude and Longitude.";
-		$('#spatialSearchErrorWindow').jqxWindow('open');
+		document.getElementById("geodexErrorWindowMessage").innerHTML = "Please enter numeric values for Latitude and Longitude.";
+		$('#geodexErrorWindow').jqxWindow('open');
 	}
 }
 
