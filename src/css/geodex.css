@@ -8,13 +8,21 @@
 /*Text Search Components CSS*/
 .textSearchPanel{
 	display: grid;
+	grid-row-gap: 15px;
+	grid-column-gap: 5px;
+	grid-template-columns: auto;
+	grid-template-rows: auto auto auto;
+}
+
+.textSearchPanel1{
+	display: grid;
 	grid-gap: 10px;
 	grid-template-columns: 250px 250px 250px 250px;
 	grid-template-rows: auto;
 }
 
 .textSearchValueLabel{
-	margin-top: 10px;
+	margin-top: 7px;
 	font-size: 13px; 
 	font-family: Verdana; 
 	text-align: right;
@@ -31,18 +39,27 @@
   	grid-row-end: 2;
 }
 
+.textSearchPanel2{
+
+}
+
+.textSearchPanel3{
+	display: grid;
+	grid-gap: 10px;
+	grid-template-columns: auto;
+	grid-template-rows: auto;
+}
+
 .textSearchSubmitButton{
 	grid-column-start: 1;
-  	grid-column-end: 5;
-  	grid-row-start: 2;
-  	grid-row-end: 3;
+  	grid-column-end: 2;
 }
 
 /*Spatial Search Components CSS*/
 
 #spatialSearchMap { 
 	width: 1000px; 
-	height: 800px; 
+	height: 600px; 
 }
 
 /*Master level grid container*/
@@ -51,11 +68,11 @@
 	grid-row-gap: 15px;
 	grid-column-gap: 5px;
 	grid-template-columns: auto;
-	grid-template-rows: auto auto;
+	grid-template-rows: auto auto auto auto;
 }
 
 /*Middle panel grid container*/
-.spatialSearchMiddlePanel{
+.spatialSearchPanel1{
 	display: grid;
 	grid-gap: 10px;
 	grid-template-columns: 500px 500px;
@@ -116,13 +133,12 @@
   	grid-row-end: 5;
 }
 
-/*Bottom panel grid container*/
-.spatialSearchBottomPanel{
+.spatialSearchPanel2{
 	display: grid;
 	grid-row-gap: 15px;
 	grid-column-gap: 5px;
 	grid-template-columns: 333px 333px 334px;
-	grid-template-rows: auto auto;
+	grid-template-rows: auto;
 }
 
 .spatialSearchUpdateButton{
@@ -146,9 +162,21 @@
   	grid-row-end: 2;	
 }
 
+.spatialSearchPanel3{
+
+}
+
+.spatialSearchPanel4{
+	display: grid;
+	grid-row-gap: 15px;
+	grid-column-gap: 5px;
+	grid-template-columns: 1000px;
+	grid-template-rows: auto;
+}
+
 .spatialSearchSubmitButton{
 	grid-column-start: 1;
-  	grid-column-end: 4;
-	grid-row-start: 2;
-  	grid-row-end: 3;	
+  	grid-column-end: 2;
+	grid-row-start: 1;
+  	grid-row-end: 2;	
 }

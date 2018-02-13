@@ -5,6 +5,8 @@ var oldLines = [];
 var map;
 var currentLocation;
 var upper;
+var precision = 5;
+var indexesParentElement = "spatialSearchPanel3";
 
 function initializeSpatialSearchPanel(){
 	
@@ -34,20 +36,20 @@ function initializeSpatialSearchPanel(){
     marker = L.marker(currentLocation, {icon: greenIcon}).addTo(map);
     
     //Create fields for location entry
-   	$("#spatialSearchLatField").jqxInput({height: 40, width: '100%'});
-    $("#spatialSearchLonField").jqxInput({height: 40, width: '100%'});
+   	$("#spatialSearchLatField").jqxInput({height: componentHeight, width: '100%'});
+    $("#spatialSearchLonField").jqxInput({height: componentHeight, width: '100%'});
     
     //Initialize field values 
-    $("#spatialSearchLatField").jqxInput('val', currentLocation[0]);
-    $("#spatialSearchLonField").jqxInput('val', currentLocation[1]);
+    $("#spatialSearchLatField").jqxInput('val', currentLocation[0].toFixed(precision));
+    $("#spatialSearchLonField").jqxInput('val', currentLocation[1].toFixed(precision));
     
     //Create buttons
-    $("#spatialSearchUpdateButton").jqxButton({ width: '100%', height: 40 });
-	$("#spatialSearchAddButton").jqxButton({ width: '100%', height: 40 });
-    $("#spatialSearchRemoveButton").jqxButton({ width: '100%', height: 40 });
-    $("#spatialSearchSubmitButton").jqxButton({ width: '100%', height: 40 });
+    $("#spatialSearchUpdateButton").jqxButton({ width: '100%', height: componentHeight });
+	$("#spatialSearchAddButton").jqxButton({ width: '100%', height: componentHeight });
+    $("#spatialSearchRemoveButton").jqxButton({ width: '100%', height: componentHeight });
+    $("#spatialSearchSubmitButton").jqxButton({ width: '100%', height: componentHeight });
    
-    //Add event listeners
+    //Add event listeners to buttons
     $("#spatialSearchUpdateButton").on('click', spatialSearchUpdateButtonClicked);
 	$("#spatialSearchAddButton").on("click", spatialSearchAddButtonClicked);
 	$("#spatialSearchRemoveButton").on("click", spatialSearchRemoveButtonClicked);
@@ -55,25 +57,72 @@ function initializeSpatialSearchPanel(){
 	
 	//Create list for holding locations
     $("#spatialSearchListBox").jqxListBox({height: '100%', width: '100%'});
-	
+    
+    //Get container dimensions
+    var container = $('#main');
+    var containerOffset = container.offset();
+    var containerWidth = container.width();
+    var containerHeight = container.height();
+    
+	//Create error window 
+    $('#spatialSearchErrorWindow').jqxWindow({  
+    		title: 'Attention!',
+    		width: 400,
+        height: 140, 
+        resizable: true,
+        autoOpen: false,
+        isModal: true,
+        //position: { x: containerWidth/2 - 200, y: 300 - 70},
+    });
+    $("#spatialSearchErrorWindowOKButton").jqxButton({ width: 75, height: 30 });
+    $("#spatialSearchErrorWindowOKButton").on("click", spatialSearchErrorWindowOKButtonClicked);
+  
+   
+   	//Call and get current providers list
+    var keyArray = [];
+   	var valueArray = [];
+    performWebServiceCall(WebServiceActions.TYPEAHEAD_PROVIDERS, keyArray, valueArray);
+    
+}
+
+function badLocation(){
+	var lat = $("#spatialSearchLatField").jqxInput('val');
+	var lon = $("#spatialSearchLonField").jqxInput('val');
+	return isNaN(lat) || isNaN(lon);
+}
+
+function spatialSearchErrorWindowOKButtonClicked(){
+	$('#spatialSearchErrorWindow').jqxWindow('close');
 }
 
 function spatialSearchUpdateButtonClicked(){
 	//Update the location of the current marker
 	var lat = $("#spatialSearchLatField").jqxInput('val');
 	var lon = $("#spatialSearchLonField").jqxInput('val');
-	currentLocation = [lat, lon];
-	var latlng = L.latLng(lat, lon);
-	marker.setLatLng(latlng);
-	redrawMap();
+	if(!badLocation()){
+		$("#spatialSearchLatField").jqxInput('val', parseFloat(lat).toFixed(precision));
+    		$("#spatialSearchLonField").jqxInput('val', parseFloat(lon).toFixed(precision));
+		currentLocation = [lat, lon];
+		var latlng = L.latLng(lat, lon);
+		marker.setLatLng(latlng);
+		redrawMap();
+	}else{
+		document.getElementById("spatialSearchErrorWindowMessage").innerHTML = "Please enter numeric values for Latitude and Longitude.";
+		$('#spatialSearchErrorWindow').jqxWindow('open');
+	}
 }
 
 function spatialSearchAddButtonClicked(){
 	//Add the current location
 	var lat = $("#spatialSearchLatField").jqxInput('val');
 	var lon = $("#spatialSearchLonField").jqxInput('val');
-	$("#spatialSearchListBox").jqxListBox('addItem', lat + ", " + lon);
-	redrawMap();
+	if(!badLocation()){
+		$("#spatialSearchListBox").jqxListBox('addItem', parseFloat(lat).toFixed(precision) + ", " + parseFloat(lon).toFixed(precision));
+		redrawMap();
+	}else{
+		document.getElementById("spatialSearchErrorWindowMessage").innerHTML = "Please enter numeric values for Latitude and Longitude.";
+		$('#spatialSearchErrorWindow').jqxWindow('open');
+	}
 }
 
 function spatialSearchRemoveButtonClicked(){
@@ -84,10 +133,17 @@ function spatialSearchRemoveButtonClicked(){
 }
 
 function spatialSearchSubmitButtonClicked(){
-	//Go get data!
+	var keyArray = ["geowithin"];
+    	var valueArray = [getGeoJSON()];
+	performWebServiceCall(WebServiceActions.SPATIAL_SEARCH_OBJECT, keyArray, valueArray);
 }
 
-
+function getGeoJSON(){
+	
+	
+	
+	
+}
 
 function setFitBounds(){
 

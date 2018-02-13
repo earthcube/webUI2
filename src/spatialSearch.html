@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 	<head>
 	
@@ -7,7 +8,8 @@
 		<link rel="stylesheet" href="css/geodex.css" type="text/css" />
 		<link rel="stylesheet" href="js/jqwidgets/styles/jqx.base.css" type="text/css" />
 		
-		<script type="text/javascript" src="js/geodex/geodexcore.js"></script>
+		<script type="text/javascript" src="js/geodex/geodexio.js"></script>
+		<script type="text/javascript" src="js/geodex/geodexui.js"></script>
 		<script type="text/javascript" src="js/geodex/geodexspatialsearch.js"></script>
 		<script type="text/javascript" src="js/jquery/jquery-1.11.1.min.js"></script>
 		<script type="text/javascript" src="js/jqwidgets/jqxcore.js"></script>
@@ -15,6 +17,8 @@
 		<script type="text/javascript" src="js/jqwidgets/jqxinput.js"></script>
 		<script type="text/javascript" src="js/jqwidgets/jqxscrollbar.js"></script>
 		<script type="text/javascript" src="js/jqwidgets/jqxlistbox.js"></script>
+		<script type="text/javascript" src="js/jqwidgets/jqxwindow.js"></script>
+		<script type="text/javascript" src="js/jqwidgets/jqxcheckbox.js"></script>
 		
 		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"
 		   integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
@@ -32,7 +36,7 @@
 		
 			<div class='spatialSearchPanel'>
 			
-				<div class='spatialSearchMiddlePanel'>
+				<div class='spatialSearchPanel1'>
 				
 					<div class='spatialSearchLatLabel'>
 						Current Latitude: 
@@ -49,7 +53,6 @@
 					<div class='spatialSearchLonField'>
 						<input type="text" value="" id='spatialSearchLonField'/>
 					</div>
-							
 					
 					<div class='spatialSearchListLabel'>
 						List of Selected Locations:
@@ -60,7 +63,7 @@
 				
 				</div>
 				   
-				<div class='spatialSearchBottomPanel'>
+				<div class='spatialSearchPanel2'>
 				   
 					<div class='spatialSearchUpdateButton'>
 						<input type="button" value="Update Location on Map" id='spatialSearchUpdateButton' />
@@ -74,10 +77,32 @@
 						<input type="button" value="Remove Location from List" id='spatialSearchRemoveButton' />
 					</div>
 					
+				</div>	
+				
+				<div class='spatialSearchPanel3' id='spatialSearchPanel3'>
+					
+				</div>	
+				
+				<div class='spatialSearchPanel4'>
+				
 					<div class='spatialSearchSubmitButton'>
 						<input type="button" value="Submit Search to Geodex.org" id='spatialSearchSubmitButton' />
 					</div>
 				
+				</div>
+
+				<div id='spatialSearchErrorWindow'>
+				
+					<div style='margin: 10px; text-align: center; 'id='spatialSearchErrorWindowMessage'></div>
+					
+					<div style='text-align: center;'>
+					
+						<div style='text-align: center; display: inline-block;'>
+							<input style='margin: 10px;' type="button" value="OK" id='spatialSearchErrorWindowOKButton' />
+						</div>
+						
+					</div>
+					
 				</div>
 			
 			</div>
@@ -85,4 +110,5 @@
 		</div>
 
 	</body>
+	
 </html>

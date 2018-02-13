@@ -7,12 +7,14 @@
 		<link rel="stylesheet" href="css/geodex.css" type="text/css" />
 		<link rel="stylesheet" href="js/jqwidgets/styles/jqx.base.css" type="text/css" />
 		
-		<script type="text/javascript" src="js/geodex/geodexcore.js"></script>
+		<script type="text/javascript" src="js/geodex/geodexio.js"></script>
+		<script type="text/javascript" src="js/geodex/geodexui.js"></script>
 		<script type="text/javascript" src="js/geodex/geodextextsearch.js"></script>
 		<script type="text/javascript" src="js/jquery/jquery-1.11.1.min.js"></script>
 		<script type="text/javascript" src="js/jqwidgets/jqxcore.js"></script>
 		<script type="text/javascript" src="js/jqwidgets/jqxbuttons.js"></script>
 		<script type="text/javascript" src="js/jqwidgets/jqxinput.js"></script>
+		<script type="text/javascript" src="js/jqwidgets/jqxcheckbox.js"></script>
 	
 	</head>
 
@@ -22,19 +24,33 @@
 		
 			<div class='textSearchPanel'>
 				
-				<div class='textSearchValueLabel'>
-					Enter Text Value:
+				<div class='textSearchPanel1'>
+				
+					<div class='textSearchValueLabel'>
+						Enter Text Value:
+					</div>
+					
+					<div class='textSearchValueField'>
+						<input type="text" value="" id='textSearchValueField'/>
+					</div>
+				
 				</div>
 				
-				<div class='textSearchValueField'>
-					<input type="text" value="" id='textSearchValueField'/>
+				<div class='textSearchPanel2' id='textSearchPanel2'>
+				
 				</div>
 				
-				<div class='textSearchSubmitButton'>
-					<input type="button" value="Submit Search to Geodex.org" id='textSearchSubmitButton' />
+				<div class='textSearchPanel3'>
+				
+					<div class='textSearchSubmitButton'>
+						<input type="button" value="Submit Search to Geodex.org" id='textSearchSubmitButton' />
+					</div>
+				
 				</div>
 			
 			</div>
+			
+			
 		
 		</div>
 		
