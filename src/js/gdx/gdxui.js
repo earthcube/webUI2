@@ -1,8 +1,7 @@
-var selectedIndexes = [];
-var totalNumIndexes = 0;
+var selectedProviders = [];
 var componentHeight = 30;
 
-function initializeIndexCheckBoxes(data){
+function initializeIndexCheckBoxes(){
 	
 	var columnCounter = 0;
 	var rowCounter = 0;
@@ -63,11 +62,4 @@ function initializeIndexCheckBoxes(data){
 	parentDiv.style.gridTemplateColumns = "20px 180px 20px 180px 20px 180px 20px 180px";
 	parentDiv.style.gridTemplateRows = gridTemplateRows;
 	
-}
-
-function remove(array, element) {
-    const index = array.indexOf(element);
-    if (index !== -1) {
-        array.splice(index, 1);
-    }
 }

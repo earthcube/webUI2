@@ -65,7 +65,7 @@ function initializeSpatialSearchPanel(){
     var containerHeight = container.height();
     
 	//Create error window 
-    $('#geodexErrorWindow').jqxWindow({  
+    $('#gdxErrorWindow').jqxWindow({  
     		title: 'Attention!',
     		width: 400,
         height: 140, 
@@ -74,11 +74,11 @@ function initializeSpatialSearchPanel(){
         isModal: true,
         //position: { x: containerWidth/2 - 200, y: 300 - 70},
     });
-    $("#geodexErrorWindowOKButton").jqxButton({ width: 75, height: 30 });
-    $("#geodexErrorWindowOKButton").on("click", geodexErrorWindowOKButtonClicked);
+    $("#gdxErrorWindowOKButton").jqxButton({ width: 75, height: 30 });
+    $("#gdxErrorWindowOKButton").on("click", gdxErrorWindowOKButtonClicked);
     
     //Create wait window 
-    $('#geodexWaitWindow').jqxWindow({  
+    $('#gdxWaitWindow').jqxWindow({  
     		title: 'Please Wait...',
     		width: 400,
         height: 140, 
@@ -105,8 +105,8 @@ function badLocation(){
 	return isNaN(lat) || isNaN(lon);
 }
 
-function geodexErrorWindowOKButtonClicked(){
-	$('#geodexErrorWindow').jqxWindow('close');
+function gdxErrorWindowOKButtonClicked(){
+	$('#gdxErrorWindow').jqxWindow('close');
 }
 
 function spatialSearchUpdateButtonClicked(){
@@ -121,8 +121,8 @@ function spatialSearchUpdateButtonClicked(){
 		marker.setLatLng(latlng);
 		redrawMap();
 	}else{
-		document.getElementById("geodexErrorWindowMessage").innerHTML = "Please enter numeric values for Latitude and Longitude.";
-		$('#geodexErrorWindow').jqxWindow('open');
+		document.getElementById("gdxErrorWindowMessage").innerHTML = "Please enter numeric values for Latitude and Longitude.";
+		$('#gdxErrorWindow').jqxWindow('open');
 	}
 }
 
@@ -134,8 +134,8 @@ function spatialSearchAddButtonClicked(){
 		$("#spatialSearchListBox").jqxListBox('addItem', parseFloat(lat).toFixed(precision) + ", " + parseFloat(lon).toFixed(precision));
 		redrawMap();
 	}else{
-		document.getElementById("geodexErrorWindowMessage").innerHTML = "Please enter numeric values for Latitude and Longitude.";
-		$('#geodexErrorWindow').jqxWindow('open');
+		document.getElementById("gdxErrorWindowMessage").innerHTML = "Please enter numeric values for Latitude and Longitude.";
+		$('#gdxErrorWindow').jqxWindow('open');
 	}
 }
 
