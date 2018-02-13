@@ -1,0 +1,10 @@
+var componentHeight = 30;
+var mainData = new MainData();
+var marker;
+var oldMarkers = [];
+var oldLines = [];
+var map;
+var currentLocation;
+var upper;
+var precision = 5;
+var indexesParentElement = "";

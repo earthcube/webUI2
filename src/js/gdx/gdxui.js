@@ -1,36 +1,33 @@
-var selectedProviders = [];
-var componentHeight = 30;
-
 function initializeIndexCheckBoxes(){
 	
 	var columnCounter = 0;
 	var rowCounter = 0;
-	totalNumIndexes = data.length;
+	var providers = mainData.getProviders();
 	
-	for(i=0; i<data.length; i++){
+	for(i=0; i<providers.length; i++){
 		
+		var provider = providers[i];
 		var parentDiv = document.getElementById(indexesParentElement);
 		
 		var newDiv = document.createElement("div"); 
-		newDiv.id = data[i]["index"];
  		parentDiv.appendChild(newDiv); 
 
- 		$('#' + newDiv.id).jqxCheckBox({ width: 120, height: 25, checked: true});
- 		selectedIndexes.push(newDiv.id);
+ 		$('#' + provider.getIndex()).jqxCheckBox({ width: 120, height: 25, checked: true});
+ 		mainData.addSelectedProvider(provider);
  		
- 		$('#' + newDiv.id).on('change', function(event){
+ 		$('#' + provider.getIndex()).on('change', function(event){
             var checked = event.args.checked;
             if(checked){
-               	selectedIndexes.push(newDiv.id);
+            		mainData.addSelectedProvider(provider);
             }else{
-                remove(selectedIndexes, newDiv.id);
+                mainData.removeSelectedProvider(provider);
             }
         });
  		
  		columnCounter++;
  		
  		var newDiv = document.createElement("div"); 
-		newDiv.id = data[i]["index"] + '_label';
+		newDiv.id = provider.getIndex() + '_label';
  		parentDiv.appendChild(newDiv); 
  		newDiv.innerHTML = data[i]["name"];
  		newDiv.style.marginTop = "5px";

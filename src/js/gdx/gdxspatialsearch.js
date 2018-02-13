@@ -1,14 +1,6 @@
-//Global variables
-var marker;
-var oldMarkers = [];
-var oldLines = [];
-var map;
-var currentLocation;
-var upper;
-var precision = 5;
-var indexesParentElement = "spatialSearchPanel3";
-
 function initializeSpatialSearchPanel(){
+	
+	indexesParentElement = "spatialSearchPanel3";
 	
 	//Set initial location to Boulder, CO.
 	currentLocation = [40.0150, -105.2705]

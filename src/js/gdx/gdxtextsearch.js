@@ -1,7 +1,7 @@
-var indexesParentElement = "textSearchPanel2";
-
 function initializeTextSearchPanel(){
 
+	indexesParentElement = "textSearchPanel2";
+	
 	//Create text fields
     $("#textSearchValueField").jqxInput({ width: '100%', height: componentHeight });
 	

@@ -1,25 +1,18 @@
-var mainData = new MainData();
-
 class MainData{
 	
 	constructor() {
-	
 		this.providers = [];
 		this.selectedProviders = [];
-		
 	}
 	
 	processProviders(data){
 		
 		for(i=0; i<data.length; i++){
-			
 			var index = 			data[i]["index"];
 			var name = 			data[i]["name"];
 			var description = 	data[i]["description"];
-			
 			var provider = new Provider(index, name, description);
 			this.providers.push(provider);
-			
 		}
 		
 	}
@@ -32,17 +25,23 @@ class MainData{
 		remove(this.providers, provider);
 	}
 	
+	getProviders(){
+		return this.providers;
+	}
+	
+	getSelectedProviders(){
+		return this.selectedProviders;
+	}
+	
 }
 
 class Provider{
 	
 	constructor(index, name, description) {
-		
 		this.index = index;
 		this.name = name;
 		this.description = description;
 		this.results = [];
-		
 	}
 	
 	getIndex(){
@@ -78,11 +77,9 @@ class Provider{
 class Result{
 	
 	constructor(position, score, id) {
-		
 		this.position = position;
 		this.score = score;
 		this.id = id;
-		
 	}
 	
 	getPosition(){
