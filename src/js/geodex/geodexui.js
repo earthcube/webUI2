@@ -60,7 +60,7 @@ function initializeIndexCheckBoxes(data){
 	parentDiv.style.display = "grid";
 	parentDiv.style.gridRowGap = "10px";
 	parentDiv.style.gridColumnGap = "10px";
-	parentDiv.style.gridTemplateColumns = "25px 225px 25px 225px 25px 225px 25px 225px";
+	parentDiv.style.gridTemplateColumns = "20px 180px 20px 180px 20px 180px 20px 180px";
 	parentDiv.style.gridTemplateRows = gridTemplateRows;
 	
 }
