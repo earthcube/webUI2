@@ -44,7 +44,7 @@ function performWebServiceCall(webServiceAction, keyArray, valueArray, updateFun
 	
 	//Create args to web service
 	var args = "";
-	for(i=0; i<keyArray.length; i++){
+	for(var i=0; i<keyArray.length; i++){
 		if(i==(keyArray.length-1)){
 			args += keyArray[i] + "=" + valueArray[i];
 		}else{

@@ -4,7 +4,7 @@ function initializeIndexCheckBoxes(){
 	var rowCounter = 0;
 	var providers = mainData.getProviders();
 	
-	for(i=0; i<providers.length; i++){
+	for(var i=0; i<providers.length; i++){
 		
 		var provider = providers[i];
 		var parentDiv = document.getElementById(indexesParentElement);
@@ -46,7 +46,7 @@ function initializeIndexCheckBoxes(){
 	}
 	
 	var gridTemplateRows = "";
-	for(i=0; i<rowCounter; i++){
+	for(var i=0; i<rowCounter; i++){
 		if(i==(rowCounter-1)){
 			gridTemplateRows += "auto";
 		}else{

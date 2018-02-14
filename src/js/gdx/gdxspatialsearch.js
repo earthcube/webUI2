@@ -166,7 +166,7 @@ function setFitBounds(){
     
     if(locations){
     
-	    for(i = 0; i<locations.length; i++){
+	    for(var i = 0; i<locations.length; i++){
 			
 			var location = locations[i];
 			var locationLabel = location.label;
@@ -202,12 +202,12 @@ function setFitBounds(){
 function redrawMap(){
 
 	//Remove all current markers
-	for(i = 0; i<oldMarkers.length; i++){
+	for(var i = 0; i<oldMarkers.length; i++){
 		map.removeLayer(oldMarkers[i]);
 	}
 	
 	//Remove all current lines
-	for(i = 0; i<oldLines.length; i++){
+	for(var i = 0; i<oldLines.length; i++){
 		map.removeLayer(oldLines[i]);
 	}
 	
@@ -216,7 +216,7 @@ function redrawMap(){
 	
 	if(locations){
 	
-		for(i = 0; i<locations.length; i++){
+		for(var i = 0; i<locations.length; i++){
 			
 			var location = locations[i];
 			var locationLabel = location.label;
@@ -235,7 +235,7 @@ function redrawMap(){
 			var latlngs = [];
 			var points = [];
 			
-			for(i = 0; i<locations.length; i++){
+			for(var i = 0; i<locations.length; i++){
 				
 				var location = locations[i];
 				var locationLabel = location.label;
@@ -250,7 +250,7 @@ function redrawMap(){
 			upper = upperLeft(points);
 			points.sort(pointSort);
 			
-			for(i = 0; i<points.length; i++){
+			for(var i = 0; i<points.length; i++){
 				var latlng = L.latLng(parseFloat(points[i].lat), parseFloat(points[i].lon));
 				latlngs.push(latlng);
 			}

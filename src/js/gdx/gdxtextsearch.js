@@ -14,16 +14,17 @@ function initializeTextSearchPanel(){
     		document.getElementById("gdxWaitWindowMessage").innerHTML = "Please wait while data is loaded from Geodex.org.";
 		$('#gdxWaitWindow').jqxWindow('open');
     	
-		if(totalNumIndexes==selectedIndexes.length){
+		if(mainData.getSelectedProviders().length==mainData.getProviders().length){
 			var keyArray = ["q", "s", "n"];
     			var valueArray = [$("#textSearchValueField").jqxInput("val"), "0", "100"];
 			performWebServiceCall(WebServiceActions.TEXTINDEX_SEARCHSET, keyArray, valueArray, updateAfterTextindexSearchset);
 		}else{
-			for(i=0; i<selectedIndexes.length; i++){
+			/*for(var i=0; i<mainData.getSelectedProviders().length; i++){
+				var provider = mainData.getSelectedProviders()[i];
 				var keyArray = ["q", "s", "n", "i"];
-    				var valueArray = [$("#textSearchValueField").jqxInput("val"), "0", "100", selectedIndexes[i]];
+    				var valueArray = [$("#textSearchValueField").jqxInput("val"), "0", "100", provider.getIndex()];
 				performWebServiceCall(WebServiceActions.TEXTINDEX_SEARCH, keyArray, valueArray, updateAfterTextindexSearch);
-			}
+			}*/
 		}
 		
 	});
@@ -54,10 +55,20 @@ function updateAfterTypeaheadProviders(data){
 function updateAfterTextindexSearchset(data){
 	$('#gdxWaitWindow').jqxWindow('close');
 	document.getElementById('output').innerHTML = JSON.stringify(data);
-	
+	mainData.populateSelectedProviderResults(data);
 }
 
 function updateAfterTextindexSearch(data){
 	$('#gdxWaitWindow').jqxWindow('close');
 	document.getElementById('output').innerHTML = JSON.stringify(data);
+	mainData.populateSelectedProviderResults(data);
 }
+
+
+
+
+
+
+
+
+
