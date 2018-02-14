@@ -4,7 +4,7 @@ function initializeTextSearchPanel(){
 	
 	//Create text fields
     $("#textSearchValueField").jqxInput({ width: '100%', height: componentHeight });
-	
+    
     //Create buttons
     $("#textSearchSubmitButton").jqxButton({ width: '100%', height: componentHeight });
     

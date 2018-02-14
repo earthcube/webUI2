@@ -6,7 +6,7 @@ class MainData{
 	}
 	
 	processProviders(data){
-		
+	
 		for(i=0; i<data.length; i++){
 			var index = 			data[i]["index"];
 			var name = 			data[i]["name"];

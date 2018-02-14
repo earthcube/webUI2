@@ -10,12 +10,13 @@ function initializeIndexCheckBoxes(){
 		var parentDiv = document.getElementById(indexesParentElement);
 		
 		var newDiv = document.createElement("div"); 
+		newDiv.id = 'box_' + provider.getIndex();
  		parentDiv.appendChild(newDiv); 
 
- 		$('#' + provider.getIndex()).jqxCheckBox({ width: 120, height: 25, checked: true});
+ 		$("#" + newDiv.id).jqxCheckBox({ width: 120, height: 25, checked: true});
  		mainData.addSelectedProvider(provider);
  		
- 		$('#' + provider.getIndex()).on('change', function(event){
+ 		$("#" + newDiv.id).on('change', function(event){
             var checked = event.args.checked;
             if(checked){
             		mainData.addSelectedProvider(provider);
@@ -23,13 +24,13 @@ function initializeIndexCheckBoxes(){
                 mainData.removeSelectedProvider(provider);
             }
         });
- 		
+
  		columnCounter++;
  		
  		var newDiv = document.createElement("div"); 
-		newDiv.id = provider.getIndex() + '_label';
+		newDiv.id = "label_" + provider.getIndex();
  		parentDiv.appendChild(newDiv); 
- 		newDiv.innerHTML = data[i]["name"];
+ 		newDiv.innerHTML = provider.getName();
  		newDiv.style.marginTop = "5px";
 		newDiv.style.fontSize = "13px"; 
 		newDiv.style.fontFamily = "Verdana"; 
