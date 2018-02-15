@@ -151,8 +151,15 @@ function getGeoJSONString(){
     return JSON.stringify(geojson);
 }
 
+function gotoSpatialResultsView(){
+	
+	
+	
+}
+
 function updateAfterSpatialSearchObject(data){
 	mainData.populateSpatialResults(data);
+	gotoSpatialResultsView();
 }
 
 function setFitBounds(){
