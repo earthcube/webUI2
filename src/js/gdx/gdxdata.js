@@ -34,7 +34,7 @@ class MainData{
 			var url = 			feature["properties"]["URL"];
 			var type = 			feature["geometry"]["type"];
 			var coordinates = 	feature["geometry"]["coordinates"];
-			var spatialResult = new SpatialResult(url, type, coordinates);
+			var spatialResult = new SpatialResult(feature, url, type, coordinates);
 			this.addSpatialResult(spatialResult);
 		}
 	}
@@ -66,6 +66,10 @@ class MainData{
 	
 	getSelectedProviders(){
 		return this.selectedProviders;
+	}
+	
+	getSpatialResults(){
+		return this.spatialResults;
 	}
 	
 	addSpatialResult(spatialResult){
@@ -129,10 +133,15 @@ class Provider{
 
 class SpatialResult{
 	
-	constructor(url, type, coordinates){
+	constructor(feature, url, type, coordinates){
+		this.feature = feature;
 		this.url = url;
 		this.type = type;
 		this.coordinates = this.processCoordinates(coordinates);
+	}
+	
+	getFeature(){
+		return this.feature;
 	}
 	
 	processCoordinates(coordinates){

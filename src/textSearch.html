@@ -13,7 +13,8 @@
 		<script type="text/javascript" src="js/gdx/gdxutils.js"></script>
 		<script type="text/javascript" src="js/gdx/gdxio.js"></script>
 		<script type="text/javascript" src="js/gdx/gdxui.js"></script>
-		<script type="text/javascript" src="js/gdx/gdxtextsearch.js"></script>
+		<script type="text/javascript" src="js/gdx/gdxtextsearchinputview.js"></script>
+		<script type="text/javascript" src="js/gdx/gdxtextsearchresultsview.js"></script>
 		<script type="text/javascript" src="js/jquery/jquery-1.12.4.min.js"></script>
 		<script type="text/javascript" src="js/jqwidgets/jqxcore.js"></script>
 		<script type="text/javascript" src="js/jqwidgets/jqxbuttons.js"></script>
@@ -23,32 +24,32 @@
 	
 	</head>
 
-	<body class='default' onload="initializeTextSearchPanel()">
+	<body class='default' onload="initializeTextSearchInputView()">
 		
 		<div id='textSearchInputView'>
 		
-			<div class='textSearchPanel'>
+			<div class='textSearchInputPanel'>
 				
-				<div class='textSearchPanel1'>
+				<div class='textSearchInputPanel1'>
 				
-					<div class='textSearchValueLabel'>
+					<div class='textSearchInputValueLabel'>
 						Enter Text Value:
 					</div>
 					
-					<div class='textSearchValueField'>
-						<input type="text" value="" id='textSearchValueField'/>
+					<div class='textSearchInputValueField'>
+						<input type="text" value="" id='textSearchInputValueField'/>
 					</div>
 				
 				</div>
 				
-				<div class='textSearchPanel2' id='textSearchPanel2'>
+				<div class='textSearchInputPanel2' id='textSearchInputPanel2'>
 				
 				</div>
 				
-				<div class='textSearchPanel3'>
+				<div class='textSearchInputPanel3'>
 				
-					<div class='textSearchSubmitButton'>
-						<input type="button" value="Submit Search to Geodex.org" id='textSearchSubmitButton' />
+					<div class='textSearchInputSubmitButton'>
+						<input type="button" value="Submit Search to Geodex.org" id='textSearchInputSubmitButton' />
 					</div>
 				
 				</div>
@@ -64,6 +65,12 @@
 			<div id='output'>
 				
 			</div>
+		
+		</div>
+		
+		<div id='textSearchInputResultsView'>
+		
+			
 		
 		</div>
 		

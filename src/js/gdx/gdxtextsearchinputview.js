@@ -1,28 +1,30 @@
-function initializeTextSearchPanel(){
+function initializeTextSearchInputView(){
 
-	indexesParentElement = "textSearchPanel2";
+	indexesParentElement = "textSearchInputPanel2";
+	
+	document.getElementById("textSearchInputResultsView").style.display = "none";
 	
 	//Create text fields
-    $("#textSearchValueField").jqxInput({ width: '100%', height: componentHeight });
+    $("#textSearchInputValueField").jqxInput({ width: '100%', height: componentHeight });
     
     //Create buttons
-    $("#textSearchSubmitButton").jqxButton({ width: '100%', height: componentHeight });
+    $("#textSearchInputSubmitButton").jqxButton({ width: '100%', height: componentHeight });
     
     //Add event listeners
-    $('#textSearchSubmitButton').on('click', function (event) {
+    $('#textSearchInputSubmitButton').on('click', function (event) {
     	
     		document.getElementById("gdxWaitWindowMessage").innerHTML = "Please wait while data is loaded from Geodex.org.";
 		$('#gdxWaitWindow').jqxWindow('open');
     	
 		if(mainData.getSelectedProviders().length==mainData.getProviders().length){
 			var keyArray = ["q", "s", "n"];
-    			var valueArray = [$("#textSearchValueField").jqxInput("val"), "0", "100"];
+    			var valueArray = [$("#textSearchInputValueField").jqxInput("val"), "0", "100"];
 			performWebServiceCall(WebServiceActions.TEXTINDEX_SEARCHSET, keyArray, valueArray, updateAfterTextindexSearchset);
 		}else{
 			/*for(var i=0; i<mainData.getSelectedProviders().length; i++){
 				var provider = mainData.getSelectedProviders()[i];
 				var keyArray = ["q", "s", "n", "i"];
-    				var valueArray = [$("#textSearchValueField").jqxInput("val"), "0", "100", provider.getIndex()];
+    				var valueArray = [$("#textSearchInputValueField").jqxInput("val"), "0", "100", provider.getIndex()];
 				performWebServiceCall(WebServiceActions.TEXTINDEX_SEARCH, keyArray, valueArray, updateAfterTextindexSearch);
 			}*/
 		}
@@ -51,9 +53,15 @@ function updateAfterTypeaheadProviders(data){
 	initializeIndexCheckBoxes();
 }
 
+function gotoTextSearchResultsView(){
+	document.getElementById("textSearchInputView").style.display = "none";
+	document.getElementById("textSearchResultsView").style.display = "block";
+}
+
 function updateAfterTextindexSearchset(data){
 	$('#gdxWaitWindow').jqxWindow('close');
 	mainData.populateSelectedProviderTextResults(data);
+	gotoTextSearchResultsView();
 }
 
 function updateAfterTextindexSearch(data){

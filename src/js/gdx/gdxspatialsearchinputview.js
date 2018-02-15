@@ -1,18 +1,20 @@
-function initializeSpatialSearchPanel(){
+function initializeSpatialSearchInputView(){
 	
-	indexesParentElement = "spatialSearchPanel3";
+	indexesParentElement = "spatialSearchInputPanel3";
+	
+	document.getElementById("spatialSearchResultsView").style.display = "none";
 	
 	//Set initial location to Boulder, CO.
 	currentLocation = [40.0150, -105.2705]
 	
     //Create Leaflet Map
-    map = L.map('spatialSearchMap').setView(currentLocation, 13);
+    inputMap = L.map('spatialSearchInputMap').setView(currentLocation, 13);
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiZWxpbmdlcmYiLCJhIjoiY2pjamhlZTl1NGRxazJxbzU0OHE5d3ZxNyJ9.n7A_BBoZxnpA2izU3McwSQ', {
         attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
         maxZoom: 18,
         id: 'mapbox.streets',
         accessToken: 'pk.eyJ1IjoiZWxpbmdlcmYiLCJhIjoiY2pjamhlZTl1NGRxazJxbzU0OHE5d3ZxNyJ9.n7A_BBoZxnpA2izU3McwSQ'
-    }).addTo(map);
+    }).addTo(inputMap);
     
     //Create an initial marker and set color to green for current location
     var greenIcon = new L.Icon({
@@ -25,36 +27,30 @@ function initializeSpatialSearchPanel(){
     });
 
     //Add marker to map
-    marker = L.marker(currentLocation, {icon: greenIcon}).addTo(map);
+    marker = L.marker(currentLocation, {icon: greenIcon}).addTo(inputMap);
     
     //Create fields for location entry
-   	$("#spatialSearchLatField").jqxInput({height: componentHeight, width: '100%'});
-    $("#spatialSearchLonField").jqxInput({height: componentHeight, width: '100%'});
+   	$("#spatialSearchInputLatField").jqxInput({height: componentHeight, width: '100%'});
+    $("#spatialSearchInputLonField").jqxInput({height: componentHeight, width: '100%'});
     
     //Initialize field values 
-    $("#spatialSearchLatField").jqxInput('val', currentLocation[0].toFixed(precision));
-    $("#spatialSearchLonField").jqxInput('val', currentLocation[1].toFixed(precision));
+    $("#spatialSearchInputLatField").jqxInput('val', currentLocation[0].toFixed(precision));
+    $("#spatialSearchInputLonField").jqxInput('val', currentLocation[1].toFixed(precision));
     
     //Create buttons
-    $("#spatialSearchUpdateButton").jqxButton({ width: '100%', height: componentHeight });
-	$("#spatialSearchAddButton").jqxButton({ width: '100%', height: componentHeight });
-    $("#spatialSearchRemoveButton").jqxButton({ width: '100%', height: componentHeight });
-    $("#spatialSearchSubmitButton").jqxButton({ width: '100%', height: componentHeight });
+    $("#spatialSearchInputUpdateButton").jqxButton({ width: '100%', height: componentHeight });
+	$("#spatialSearchInputAddButton").jqxButton({ width: '100%', height: componentHeight });
+    $("#spatialSearchInputRemoveButton").jqxButton({ width: '100%', height: componentHeight });
+    $("#spatialSearchInputSubmitButton").jqxButton({ width: '100%', height: componentHeight });
    
     //Add event listeners to buttons
-    $("#spatialSearchUpdateButton").on('click', spatialSearchUpdateButtonClicked);
-	$("#spatialSearchAddButton").on("click", spatialSearchAddButtonClicked);
-	$("#spatialSearchRemoveButton").on("click", spatialSearchRemoveButtonClicked);
-	$("#spatialSearchSubmitButton").on("click", spatialSearchSubmitButtonClicked);
+    $("#spatialSearchInputUpdateButton").on('click', spatialSearchInputUpdateButtonClicked);
+	$("#spatialSearchInputAddButton").on("click", spatialSearchInputAddButtonClicked);
+	$("#spatialSearchInputRemoveButton").on("click", spatialSearchInputRemoveButtonClicked);
+	$("#spatialSearchInputSubmitButton").on("click", spatialSearchInputSubmitButtonClicked);
 	
 	//Create list for holding locations
-    $("#spatialSearchListBox").jqxListBox({height: '100%', width: '100%'});
-    
-    //Get container dimensions
-    var container = $('#main');
-    var containerOffset = container.offset();
-    var containerWidth = container.width();
-    var containerHeight = container.height();
+    $("#spatialSearchInputListBox").jqxListBox({height: '100%', width: '100%'});
     
 	//Create error window 
     $('#gdxErrorWindow').jqxWindow({  
@@ -64,7 +60,6 @@ function initializeSpatialSearchPanel(){
         resizable: true,
         autoOpen: false,
         isModal: true
-        //position: { x: containerWidth/2 - 200, y: 300 - 70}
     });
     $("#gdxErrorWindowOKButton").jqxButton({ width: 75, height: 30 });
     $("#gdxErrorWindowOKButton").on("click", gdxErrorWindowOKButtonClicked);
@@ -78,12 +73,12 @@ function initializeSpatialSearchPanel(){
         autoOpen: false,
         isModal: true
     });
-   
+    
 }
 
 function badLocation(){
-	var lat = $("#spatialSearchLatField").jqxInput('val');
-	var lon = $("#spatialSearchLonField").jqxInput('val');
+	var lat = $("#spatialSearchInputLatField").jqxInput('val');
+	var lon = $("#spatialSearchInputLonField").jqxInput('val');
 	return isNaN(lat) || isNaN(lon);
 }
 
@@ -91,13 +86,13 @@ function gdxErrorWindowOKButtonClicked(){
 	$('#gdxErrorWindow').jqxWindow('close');
 }
 
-function spatialSearchUpdateButtonClicked(){
+function spatialSearchInputUpdateButtonClicked(){
 	//Update the location of the current marker
-	var lat = $("#spatialSearchLatField").jqxInput('val');
-	var lon = $("#spatialSearchLonField").jqxInput('val');
+	var lat = $("#spatialSearchInputLatField").jqxInput('val');
+	var lon = $("#spatialSearchInputLonField").jqxInput('val');
 	if(!badLocation()){
-		$("#spatialSearchLatField").jqxInput('val', parseFloat(lat).toFixed(precision));
-    		$("#spatialSearchLonField").jqxInput('val', parseFloat(lon).toFixed(precision));
+		$("#spatialSearchInputLatField").jqxInput('val', parseFloat(lat).toFixed(precision));
+    		$("#spatialSearchInputLonField").jqxInput('val', parseFloat(lon).toFixed(precision));
 		currentLocation = [lat, lon];
 		var latlng = L.latLng(lat, lon);
 		marker.setLatLng(latlng);
@@ -108,12 +103,12 @@ function spatialSearchUpdateButtonClicked(){
 	}
 }
 
-function spatialSearchAddButtonClicked(){
+function spatialSearchInputAddButtonClicked(){
 	//Add the current location
-	var lat = $("#spatialSearchLatField").jqxInput('val');
-	var lon = $("#spatialSearchLonField").jqxInput('val');
+	var lat = $("#spatialSearchInputLatField").jqxInput('val');
+	var lon = $("#spatialSearchInputLonField").jqxInput('val');
 	if(!badLocation()){
-		$("#spatialSearchListBox").jqxListBox('addItem', parseFloat(lat).toFixed(precision) + ", " + parseFloat(lon).toFixed(precision));
+		$("#spatialSearchInputListBox").jqxListBox('addItem', parseFloat(lat).toFixed(precision) + ", " + parseFloat(lon).toFixed(precision));
 		redrawMap();
 	}else{
 		document.getElementById("gdxErrorWindowMessage").innerHTML = "Please enter numeric values for Latitude and Longitude.";
@@ -121,21 +116,23 @@ function spatialSearchAddButtonClicked(){
 	}
 }
 
-function spatialSearchRemoveButtonClicked(){
+function spatialSearchInputRemoveButtonClicked(){
 	//Remove the selected location
-	var item = $("#spatialSearchListBox").jqxListBox('getSelectedItem'); 
-	$("#spatialSearchListBox").jqxListBox('removeItem', item);
+	var item = $("#spatialSearchInputListBox").jqxListBox('getSelectedItem'); 
+	$("#spatialSearchInputListBox").jqxListBox('removeItem', item);
 	redrawMap();
 }
 
-function spatialSearchSubmitButtonClicked(){
+function spatialSearchInputSubmitButtonClicked(){
+	document.getElementById("gdxWaitWindowMessage").innerHTML = "Please wait while data is loaded from Geodex.org.";
+	$('#gdxWaitWindow').jqxWindow('open');
 	var keyArray = ["geowithin"];
     	var valueArray = [getGeoJSONString()];
 	performWebServiceCall(WebServiceActions.SPATIAL_SEARCH_OBJECT, keyArray, valueArray, updateAfterSpatialSearchObject);
 }
 
 function getGeoJSONString(){
-	var locations = $("#spatialSearchListBox").jqxListBox('getItems');
+	var locations = $("#spatialSearchInputListBox").jqxListBox('getItems');
  	var data = [];
     if(locations){
 	    for(var i = 0; i<locations.length; i++){
@@ -151,29 +148,30 @@ function getGeoJSONString(){
     return JSON.stringify(geojson);
 }
 
-function gotoSpatialResultsView(){
-	
-	
-	
+function gotoSpatialSearchResultsView(){
+	document.getElementById("spatialSearchInputInputView").style.display = "none";
+	document.getElementById("spatialSearchInputResultsView").style.display = "block";
+	initializeSpatialSearchResultsView();
 }
 
 function updateAfterSpatialSearchObject(data){
+	$('#gdxWaitWindow').jqxWindow('close');
 	mainData.populateSpatialResults(data);
-	gotoSpatialResultsView();
+	gotoSpatialSearchResultsView();
 }
 
 function setFitBounds(){
 
 	//Calculate a bounding box that will include all markers
-	var lat = $("#spatialSearchLatField").jqxInput('val');
-	var lon = $("#spatialSearchLonField").jqxInput('val');
+	var lat = $("#spatialSearchInputLatField").jqxInput('val');
+	var lon = $("#spatialSearchInputLonField").jqxInput('val');
 	
 	neLocationLat = parseFloat(lat);
     neLocationLon = parseFloat(lon);
     swLocationLat = parseFloat(lat);
     swLocationLon = parseFloat(lon);
     
-    var locations = $("#spatialSearchListBox").jqxListBox('getItems');
+    var locations = $("#spatialSearchInputListBox").jqxListBox('getItems');
     
     if(locations){
     
@@ -206,7 +204,7 @@ function setFitBounds(){
     swLocation = [swLocationLat, swLocationLon]
     neLocation = [neLocationLat, neLocationLon]
     
-    map.fitBounds([swLocation, neLocation]);
+    inputMap.fitBounds([swLocation, neLocation]);
     
 }
 
@@ -214,16 +212,16 @@ function redrawMap(){
 
 	//Remove all current markers
 	for(var i = 0; i<oldMarkers.length; i++){
-		map.removeLayer(oldMarkers[i]);
+		inputMap.removeLayer(oldMarkers[i]);
 	}
 	
 	//Remove all current lines
 	for(var i = 0; i<oldLines.length; i++){
-		map.removeLayer(oldLines[i]);
+		inputMap.removeLayer(oldLines[i]);
 	}
 	
 	//Create new markers for each location
-	var locations = $("#spatialSearchListBox").jqxListBox('getItems');
+	var locations = $("#spatialSearchInputListBox").jqxListBox('getItems');
 	
 	if(locations){
 	
@@ -235,7 +233,7 @@ function redrawMap(){
 			var lat = locationLabelArray[0];
 			var lon = locationLabelArray[1];
 	
-			var marker = L.marker([lat, lon]).addTo(map);
+			var marker = L.marker([lat, lon]).addTo(inputMap);
 			oldMarkers.push(marker);
 			
 		}
@@ -268,7 +266,7 @@ function redrawMap(){
 			latlng = L.latLng(parseFloat(points[0].lat), parseFloat(points[0].lon));
 			latlngs.push(latlng);
 			
-			var polyline = L.polyline(latlngs).addTo(map);
+			var polyline = L.polyline(latlngs).addTo(inputMap);
 			oldLines.push(polyline);
 			
 		}

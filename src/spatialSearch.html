@@ -14,7 +14,8 @@
 		<script type="text/javascript" src="js/gdx/gdxutils.js"></script>
 		<script type="text/javascript" src="js/gdx/gdxio.js"></script>
 		<script type="text/javascript" src="js/gdx/gdxui.js"></script>
-		<script type="text/javascript" src="js/gdx/gdxspatialsearch.js"></script>
+		<script type="text/javascript" src="js/gdx/gdxspatialsearchinputview.js"></script>
+		<script type="text/javascript" src="js/gdx/gdxspatialsearchresultsview.js"></script>
 		<script type="text/javascript" src="js/jquery/jquery-1.12.4.min.js"></script>
 		<script type="text/javascript" src="js/geojson/geojson.min.js"></script>
 		<script type="text/javascript" src="js/jqwidgets/jqxcore.js"></script>
@@ -33,61 +34,61 @@
 		   crossorigin=""></script>
 	</head>
 
-	<body class='default' onload="initializeSpatialSearchPanel()">
+	<body class='default' onload="initializeSpatialSearchInputView()">
 		
 		<div id='spatialSearchInputView'>
 		
-			<div id='spatialSearchMap'></div>
+			<div id='spatialSearchInputMap'></div>
 		
-			<div class='spatialSearchPanel'>
+			<div class='spatialSearchInputPanel'>
 			
-				<div class='spatialSearchPanel1'>
+				<div class='spatialSearchInputPanel1'>
 				
-					<div class='spatialSearchLatLabel'>
+					<div class='spatialSearchInputLatLabel'>
 						Current Latitude: 
 					</div>
 					
-					<div class='spatialSearchLatField'>
-						<input type="text" value="" id='spatialSearchLatField'/>
+					<div class='spatialSearchInputLatField'>
+						<input type="text" value="" id='spatialSearchInputLatField'/>
 					</div>
 					
-					<div class='spatialSearchLonLabel'>
+					<div class='spatialSearchInputLonLabel'>
 						Current Longtitude: 
 					</div>
 					
-					<div class='spatialSearchLonField'>
-						<input type="text" value="" id='spatialSearchLonField'/>
+					<div class='spatialSearchInputLonField'>
+						<input type="text" value="" id='spatialSearchInputLonField'/>
 					</div>
 					
-					<div class='spatialSearchListLabel'>
+					<div class='spatialSearchInputListLabel'>
 						List of Selected Locations:
 					</div>
 					
-					<div  class='spatialSearchListBox' id='spatialSearchListBox'>
+					<div  class='spatialSearchInputListBox' id='spatialSearchInputListBox'>
 					</div>
 				
 				</div>
 				   
-				<div class='spatialSearchPanel2'>
+				<div class='spatialSearchInputPanel2'>
 				   
-					<div class='spatialSearchUpdateButton'>
-						<input type="button" value="Update Location on Map" id='spatialSearchUpdateButton' />
+					<div class='spatialSearchInputUpdateButton'>
+						<input type="button" value="Update Location on Map" id='spatialSearchInputUpdateButton' />
 					</div>
 					
-					<div class='spatialSearchAddButton'>
-						<input type="button" value="Add Location to List" id='spatialSearchAddButton' />
+					<div class='spatialSearchInputAddButton'>
+						<input type="button" value="Add Location to List" id='spatialSearchInputAddButton' />
 					</div>
 					
-					<div class='spatialSearchRemoveButton'>
-						<input type="button" value="Remove Location from List" id='spatialSearchRemoveButton' />
+					<div class='spatialSearchInputRemoveButton'>
+						<input type="button" value="Remove Location from List" id='spatialSearchInputRemoveButton' />
 					</div>
 					
 				</div>		
 				
-				<div class='spatialSearchPanel4'>
+				<div class='spatialSearchInputPanel3'>
 				
-					<div class='spatialSearchSubmitButton'>
-						<input type="button" value="Submit Search to Geodex.org" id='spatialSearchSubmitButton' />
+					<div class='spatialSearchInputSubmitButton'>
+						<input type="button" value="Submit Search to Geodex.org" id='spatialSearchInputSubmitButton' />
 					</div>
 				
 				</div>
@@ -117,6 +118,8 @@
 		</div>
 		
 		<div id='spatialSearchResultsView'>
+		
+			<div id='spatialSearchResultsMap'></div>
 		
 		</div>
 

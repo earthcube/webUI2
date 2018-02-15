@@ -5,29 +5,26 @@
 	margin: 0 auto; 
 }
 
-#spatialSearchMap { 
+#spatialSearchInputMap{ 
 	width: 800px; 
 	height: 600px; 
 }
 
-/*Master level grid container*/
-.spatialSearchPanel{
+.spatialSearchInputPanel{
 	display: grid;
 	grid-row-gap: 15px;
-	grid-column-gap: 5px;
 	grid-template-columns: auto;
-	grid-template-rows: auto auto auto auto;
+	grid-template-rows: auto auto auto;
 }
 
-/*Middle panel grid container*/
-.spatialSearchPanel1{
+.spatialSearchInputPanel1{
 	display: grid;
 	grid-gap: 10px;
 	grid-template-columns: 400px 400px;
 	grid-template-rows: auto auto auto auto;
 }
 
-.spatialSearchLatLabel{
+.spatialSearchInputLatLabel{
 	margin-top: 10px;
 	font-size: 13px; 
 	font-family: Verdana; 
@@ -38,14 +35,14 @@
   	grid-row-end: 2;
 }
 
-.spatialSearchLatField{
+.spatialSearchInputLatField{
 	grid-column-start: 1;
   	grid-column-end: 2;
   	grid-row-start: 2;
   	grid-row-end: 3;
 }
 
-.spatialSearchLonLabel{
+.spatialSearchInputLonLabel{
 	margin-top: 10px;
 	font-size: 13px; 
 	font-family: Verdana; 
@@ -56,14 +53,14 @@
   	grid-row-end: 4;
 }
 
-.spatialSearchLonField{
+.spatialSearchInputLonField{
 	grid-column-start: 1;
   	grid-column-end: 2;
   	grid-row-start: 4;
   	grid-row-end: 5;
 }
 
-.spatialSearchListLabel{
+.spatialSearchInputListLabel{
 	margin-top: 10px;
 	font-size: 13px; 
 	font-family: Verdana; 
@@ -74,14 +71,14 @@
   	grid-row-end: 2;
 }
 
-.spatialSearchListBox{
+.spatialSearchInputListBox{
 	grid-column-start: 2;
   	grid-column-end: 3;
   	grid-row-start: 2;
   	grid-row-end: 5;
 }
 
-.spatialSearchPanel2{
+.spatialSearchInputPanel2{
 	display: grid;
 	grid-row-gap: 15px;
 	grid-column-gap: 5px;
@@ -89,40 +86,34 @@
 	grid-template-rows: auto;
 }
 
-.spatialSearchUpdateButton{
+.spatialSearchInputUpdateButton{
 	grid-column-start: 1;
   	grid-column-end: 2;
   	grid-row-start: 1;
   	grid-row-end: 2;		
 }
 
-.spatialSearchAddButton{
+.spatialSearchInputAddButton{
 	grid-column-start: 2;
   	grid-column-end: 3;
 	grid-row-start: 1;
   	grid-row-end: 2;	
 }
 
-.spatialSearchRemoveButton{
+.spatialSearchInputRemoveButton{
 	grid-column-start: 3;
   	grid-column-end: 4;
 	grid-row-start: 1;
   	grid-row-end: 2;	
 }
 
-.spatialSearchPanel3{
-
-}
-
-.spatialSearchPanel4{
+.spatialSearchInputPanel3{
 	display: grid;
-	grid-row-gap: 15px;
-	grid-column-gap: 5px;
-	grid-template-columns: 800px;
+	grid-template-columns: auto;
 	grid-template-rows: auto;
 }
 
-.spatialSearchSubmitButton{
+.spatialSearchInputSubmitButton{
 	grid-column-start: 1;
   	grid-column-end: 2;
 	grid-row-start: 1;
