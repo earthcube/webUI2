@@ -36,8 +36,7 @@ function initializeTextSearchPanel(){
         height: 140, 
         resizable: true,
         autoOpen: false,
-        isModal: true,
-        //position: { x: containerWidth/2 - 200, y: 300 - 70},
+        isModal: true
     });
     
     //Call and get current providers list
@@ -54,21 +53,10 @@ function updateAfterTypeaheadProviders(data){
 
 function updateAfterTextindexSearchset(data){
 	$('#gdxWaitWindow').jqxWindow('close');
-	document.getElementById('output').innerHTML = JSON.stringify(data);
-	mainData.populateSelectedProviderResults(data);
+	mainData.populateSelectedProviderTextResults(data);
 }
 
 function updateAfterTextindexSearch(data){
 	$('#gdxWaitWindow').jqxWindow('close');
-	document.getElementById('output').innerHTML = JSON.stringify(data);
-	mainData.populateSelectedProviderResults(data);
+	mainData.populateSelectedProviderTextResults(data);
 }
-
-
-
-
-
-
-
-
-

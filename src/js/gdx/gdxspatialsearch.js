@@ -63,8 +63,8 @@ function initializeSpatialSearchPanel(){
         height: 140, 
         resizable: true,
         autoOpen: false,
-        isModal: true,
-        //position: { x: containerWidth/2 - 200, y: 300 - 70},
+        isModal: true
+        //position: { x: containerWidth/2 - 200, y: 300 - 70}
     });
     $("#gdxErrorWindowOKButton").jqxButton({ width: 75, height: 30 });
     $("#gdxErrorWindowOKButton").on("click", gdxErrorWindowOKButtonClicked);
@@ -76,19 +76,9 @@ function initializeSpatialSearchPanel(){
         height: 140, 
         resizable: true,
         autoOpen: false,
-        isModal: true,
-        //position: { x: containerWidth/2 - 200, y: 300 - 70},
+        isModal: true
     });
    
-   	//Call and get current providers list
-    var keyArray = [];
-   	var valueArray = [];
-    performWebServiceCall(WebServiceActions.TYPEAHEAD_PROVIDERS, keyArray, valueArray, updateAfterTypeaheadProviders);
-    
-}
-
-function updateAfterTypeaheadProviders(data){
-	initializeIndexCheckBoxes(data);
 }
 
 function badLocation(){
@@ -140,15 +130,29 @@ function spatialSearchRemoveButtonClicked(){
 
 function spatialSearchSubmitButtonClicked(){
 	var keyArray = ["geowithin"];
-    	var valueArray = [getGeoJSON()];
-	performWebServiceCall(WebServiceActions.SPATIAL_SEARCH_OBJECT, keyArray, valueArray);
+    	var valueArray = [getGeoJSONString()];
+	performWebServiceCall(WebServiceActions.SPATIAL_SEARCH_OBJECT, keyArray, valueArray, updateAfterSpatialSearchObject);
 }
 
-function getGeoJSON(){
-	
-	
-	
-	
+function getGeoJSONString(){
+	var locations = $("#spatialSearchListBox").jqxListBox('getItems');
+ 	var data = [];
+    if(locations){
+	    for(var i = 0; i<locations.length; i++){
+			var location = locations[i];
+			var locationLabel = location.label;
+			var locationLabelArray = locationLabel.split(",");
+			var lat = parseFloat(locationLabelArray[0]);
+			var lon = parseFloat(locationLabelArray[1]);
+			data.push({"lat": lat, "lon": lon});
+	    }
+    }
+    var geojson = GeoJSON.parse(data, {Point: ['lat', 'lon']});
+    return JSON.stringify(geojson);
+}
+
+function updateAfterSpatialSearchObject(data){
+	mainData.populateSpatialResults(data);
 }
 
 function setFitBounds(){

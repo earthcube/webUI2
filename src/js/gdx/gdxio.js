@@ -37,6 +37,7 @@ function performWebServiceCall(webServiceAction, keyArray, valueArray, updateFun
 	//Set listener for call completion
     xmlhttp.onreadystatechange = function() {
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
+			alert(xmlhttp.responseText);
 			var data = JSON.parse(xmlhttp.responseText);
 			updateFunction(data);
 		}
