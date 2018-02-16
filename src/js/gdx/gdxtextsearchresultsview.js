@@ -2,35 +2,99 @@ function initializeTextSearchResultsView(){
 
 	$("#textSearchResultsSplitter").jqxSplitter({  width: "100%", height: 800, panels: [{ size: '25%'}] });
 	
-	var providerListBoxData = [];
+	var selectedProvidersWithTextResults = [];
 	for(var i=0; i<mainData.getSelectedProviders().length; i++){
 		var provider = mainData.getSelectedProviders()[i];
-		providerListBoxData.push(provider.getName());
+		if(provider.getTextResults().length>0){
+			selectedProvidersWithTextResults.push(provider);
+		}
 	}
-		
-    $("#textSearchResultsProviderListBox").jqxListBox({ selectedIndex: 0, source: providerListBoxData, width: "100%", height: 800 });
-    $("#textSearchResultsResultsListBox").jqxListBox({ width: "100%", height: 800 });
-            
+	
+	var providerListBoxData = [];
+	for(var i=0; i<selectedProvidersWithTextResults.length; i++){
+		var provider = selectedProvidersWithTextResults[i];
+		var providerArray = {};
+		providerArray["Index"] = provider.getIndex();
+		providerArray["Name"] = provider.getName();
+		providerArray["Description"] = provider.getDescription();
+		providerArray["HighScore"] = provider.getHighScore();
+		providerListBoxData.push(providerArray);
+	}
+    var providerListBoxDataSource = {localdata: providerListBoxData, datatype: "array"};
+    var providerListBoxDataAdapter = new $.jqx.dataAdapter(providerListBoxDataSource);
+
+    $("#textSearchResultsProviderListBox").jqxListBox({ selectedIndex: 0, source: providerListBoxDataAdapter, 
+    		displayMember: "Name", valueMember: "Index", itemHeight: 70, width: "100%", height: 800,
+	    	renderer: function (index, label, value){
+	    		var providerListBoxDataRecord = providerListBoxData[index];
+	    		var name = 			providerListBoxDataRecord["Name"];
+	    		var description = 	providerListBoxDataRecord["Description"];
+	    		var highScore = 		parseFloat(providerListBoxDataRecord["HighScore"]).toFixed(5);
+	    		var table = '<table>' 
+	    					+ '<tr><td>' 
+	    					+ '<b>' + name + "</b>"
+	    					+ '</td></tr>' 
+	    					+ '<tr><td>' 
+	    					+ description
+	    					+ '</td></tr>'
+	    					+ '<tr><td>High Score: ' 
+	    					+ highScore
+	    					+ '</td></tr>'
+	    					+ '</table>';
+	    		return table;
+	    	}
+    });
+      
    	$("#textSearchResultsProviderListBox").on("select", function (event) {
-   		var provider = mainData.getSelectedProviders()[event.args.index];
+   		var provider = selectedProvidersWithTextResults[event.args.index];
 		updateResultsListBox(provider);
 	});
    	
-   	updateResultsListBox(mainData.getSelectedProviders()[0]);
+   	$("#textSearchResultsResultsListBox").jqxListBox({ width: "100%", height: 800 });
+   	
+   	updateResultsListBox(selectedProvidersWithTextResults[0]);
 }
 
 function updateResultsListBox(provider){
 	
+	$("#textSearchResultsResultsListBox").jqxListBox('clear'); 
+	$("#textSearchResultsResultsListBox").jqxListBox('beginUpdate'); 
+	
 	var results = provider.getTextResults();
 	var resultsListBoxData = [];
-	
 	for(var i=0; i<results.length; i++){
 		var result = results[i];
-		resultsListBoxData.push(result.getURL());
+		var resultArray = [];
+		resultArray["Score"] = 	result.getScore();
+		resultArray["URL"] = 	result.getURL();
+		resultsListBoxData.push(resultArray);
 	}
 	
-	$("#textSearchResultsResultsListBox").jqxListBox({source: resultsListBoxData});
-	$("#textSearchResultsResultsListBox").jqxListBox({selectedIndex: 0 });
+	for(var i=0; i<resultsListBoxData.length; i++){
+		console.log(resultsListBoxData[i]);
+	}
+	
+    var resultsListBoxDataSource = {localdata: resultsListBoxData, datatype: "array"};
+    var resultsListBoxDataAdapter = new $.jqx.dataAdapter(resultsListBoxDataSource);
+    
+	$("#textSearchResultsResultsListBox").jqxListBox({ selectedIndex: 0, source: resultsListBoxDataAdapter, displayMember: "URL", valueMember: "URL", itemHeight: 70, 
+		renderer: function (index, label, value){
+	    		var resultsListBoxDataRecord = resultsListBoxData[index];
+	    		var url = 		resultsListBoxDataRecord["URL"];
+	    		var score = 		parseFloat(resultsListBoxDataRecord["Score"]).toFixed(5);
+	    		var table = '<table>' 
+	    					+ '<tr><td>' 
+	    					+ '<b><a target="_blank" href="' + url + '">' + url + "</a></b>"
+	    					+ '</td></tr>' 
+	    					+ '<tr><td>Score: ' 
+	    					+ score
+	    					+ '</td></tr>'
+	    					+ '</table>';
+	    		return table;
+	    	}
+	});
+	
+	$("#textSearchResultsResultsListBox").jqxListBox('endUpdate'); 
 	
 }
 
