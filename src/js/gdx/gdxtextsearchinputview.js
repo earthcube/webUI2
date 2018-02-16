@@ -2,7 +2,7 @@ function initializeTextSearchInputView(){
 
 	indexesParentElement = "textSearchInputPanel2";
 	
-	document.getElementById("textSearchInputResultsView").style.display = "none";
+	document.getElementById("textSearchResultsView").style.display = "none";
 	
 	//Create text fields
     $("#textSearchInputValueField").jqxInput({ width: '100%', height: componentHeight });
@@ -55,7 +55,8 @@ function updateAfterTypeaheadProviders(data){
 
 function gotoTextSearchResultsView(){
 	document.getElementById("textSearchInputView").style.display = "none";
-	document.getElementById("textSearchResultsView").style.display = "block";
+	document.getElementById("textSearchResultsView").style.display = "grid";
+	initializeTextSearchResultsView();
 }
 
 function updateAfterTextindexSearchset(data){

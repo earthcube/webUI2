@@ -21,6 +21,10 @@
 		<script type="text/javascript" src="js/jqwidgets/jqxinput.js"></script>
 		<script type="text/javascript" src="js/jqwidgets/jqxcheckbox.js"></script>
 		<script type="text/javascript" src="js/jqwidgets/jqxwindow.js"></script>
+		<script type="text/javascript" src="js/jqwidgets/jqxscrollbar.js"></script>
+    		<script type="text/javascript" src="js/jqwidgets/jqxsplitter.js"></script>
+    		<script type="text/javascript" src="js/jqwidgets/jqxlistbox.js"></script>
+    		<script type="text/javascript" src="js/jqwidgets/jqxdata.js"></script>
 	
 	</head>
 
@@ -56,22 +60,36 @@
 			
 			</div>
 			
-			<div id='gdxWaitWindow'>
-				
-				<div style='margin: 10px; text-align: center;' id='gdxWaitWindowMessage'></div>
-				
-			</div>
-			
 			<div id='output'>
 				
 			</div>
 		
 		</div>
 		
-		<div id='textSearchInputResultsView'>
+		<div id='textSearchResultsView'>
 		
+			<div class='textSearchResultsPanel'>
+
+    				<div id='textSearchResultsSplitter'>
 			
+					<div class='textSearchResultsProviderListBox' id='textSearchResultsProviderListBox'>
+						
+					</div>
+					
+					<div class='textSearchResultsResultsListBox' id='textSearchResultsResultsListBox'>
+						
+					</div>
+				
+				</div>
+			
+			</div>
 		
+		</div>
+		
+		<div id='gdxWaitWindow'>
+				
+			<div style='margin: 10px; text-align: center;' id='gdxWaitWindowMessage'></div>
+			
 		</div>
 		
 	</body>

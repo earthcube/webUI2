@@ -93,10 +93,10 @@ class Provider{
 	
 	populateTextResults(data){
 		for(var i=0; i<data.length; i++){
-			var position = 	data[i]["Position"];
-			var score = 		data[i]["Score"];
-			var id = 		data[i]["ID"];
-			var textResult = new TextResult(position, score, id);
+			var position = 	data[i]["position"];
+			var score = 		data[i]["score"];
+			var url = 		data[i]["URL"];
+			var textResult = new TextResult(position, score, url);
 			this.addTextResult(textResult);
 		}
 	}
@@ -127,6 +127,10 @@ class Provider{
 	
 	clearTextResults(){
 		this.textResults = [];
+	}
+	
+	getTextResults(){
+		return this.textResults;
 	}
 	
 }
@@ -176,10 +180,10 @@ class SpatialResult{
 
 class TextResult{
 	
-	constructor(position, score, id){
+	constructor(position, score, url){
 		this.position = position;
 		this.score = score;
-		this.id = id;
+		this.url = url;
 	}
 	
 	getPosition(){
@@ -190,8 +194,8 @@ class TextResult{
 		return this.score;
 	}
 	
-	getID(){
-		return this.id;
+	getURL(){
+		return this.url;
 	}
 	
 }
