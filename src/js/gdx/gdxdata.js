@@ -174,6 +174,23 @@ class SpatialResult{
     		return JSON.stringify(geojson);
 	}
 	
+	getCoordinatesAsString(){
+		var string = "";
+		for(var i=0; i<this.coordinates.length; i++){
+			var lat = this.coordinates[i][0];
+			var lon = this.coordinates[i][1];
+			string += "[" + lat + ", " + lon + "]";
+			if(i<(this.coordinates.length-1)){
+				string += ", ";
+			}
+		}
+    		return string;
+	}
+	
+	getCoordinates(){
+		return this.coordinates;
+	}
+	
 	getType(){
 		return this.type;
 	}

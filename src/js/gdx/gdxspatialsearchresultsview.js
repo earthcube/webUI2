@@ -1,5 +1,20 @@
 function initializeSpatialSearchResultsView(){
+	
+	currentSpatialResultIndex = 0;
 	currentLocation = [40.0150, -105.2705]
+	
+	//Create buttons
+	$("#spatialSearchResultsPreviousButton").jqxButton({ width: '150px', height: componentHeight, theme: "darkblue", disabled: true });
+	$("#spatialSearchResultsNextButton").jqxButton({ width: '150px', height: componentHeight, theme: "darkblue" });
+	$("#spatialSearchResultsBackButton").jqxButton({ width: "500px", height: componentHeight, theme: "darkblue" });
+	
+     $('#spatialSearchResultsBackButton').on('click', function (event) {
+    		gotosSatialSearchInputView();
+	});
+	
+	//Add action listeners
+	$("#spatialSearchResultsPreviousButton").on('click', spatialSearchResultsPreviousButtonClicked);
+	$("#spatialSearchResultsNextButton").on('click', spatialSearchResultsNextButtonClicked);
 	
     //Create Leaflet Map
     resultsMap = L.map('spatialSearchResultsMap').setView(currentLocation, 13);
@@ -10,6 +25,8 @@ function initializeSpatialSearchResultsView(){
         accessToken: 'pk.eyJ1IjoiZWxpbmdlcmYiLCJhIjoiY2pjamhlZTl1NGRxazJxbzU0OHE5d3ZxNyJ9.n7A_BBoZxnpA2izU3McwSQ'
     }).addTo(resultsMap);
    
+    redrawMap();
+    updateResultDisplay();
 }
 
 function gotoSpatialSearchInputView(){
@@ -17,56 +34,61 @@ function gotoSpatialSearchInputView(){
 	document.getElementById("spatialSearchInputView").style.display = "grid";
 }
 
-function setFitBounds(){
+function spatialSearchResultsPreviousButtonClicked(){
+	$("#spatialSearchResultsNextButton").jqxButton({disabled: false });
+	if(currentSpatialResultIndex>0){
+		currentSpatialResultIndex--;
+	}
+	redrawMap();
+	updateResultDisplay();
+	if(currentSpatialResultIndex==0){
+		$("#spatialSearchResultsPreviousButton").jqxButton({disabled: true });
+	}
+}
 
-	//Calculate a bounding box that will include all markers
-	/*var lat = $("#spatialSearchInputLatField").jqxInput('val');
-	var lon = $("#spatialSearchInputLonField").jqxInput('val');
+function spatialSearchResultsNextButtonClicked(){
+	$("#spatialSearchResultsPreviousButton").jqxButton({disabled: false });
+	if(currentSpatialResultIndex<(mainData.getSpatialResults().length-1)){
+		currentSpatialResultIndex++;
+	}
+	redrawMap();
+	updateResultDisplay();
+	if(currentSpatialResultIndex==(mainData.getSpatialResults().length-1)){
+		$("#spatialSearchResultsNextButton").jqxButton({disabled: true });
+	}
+}
+
+function updateResultDisplay(){
 	
-	neLocationLat = parseFloat(lat);
-    neLocationLon = parseFloat(lon);
-    swLocationLat = parseFloat(lat);
-    swLocationLon = parseFloat(lon);
-    
-    var locations = $("#spatialSearchInputListBox").jqxListBox('getItems');
-    
-    if(locations){
-    
-	    for(var i = 0; i<locations.length; i++){
-			
-			var location = locations[i];
-			var locationLabel = location.label;
-			var locationLabelArray = locationLabel.split(",");
-			var lat = parseFloat(locationLabelArray[0]);
-			var lon = parseFloat(locationLabelArray[1]);
-			
-			if (lat < swLocationLat){
-				swLocationLat = parseFloat(lat);
-			}
-			if (lon < swLocationLon){
-				swLocationLon = parseFloat(lon);
-			}
+	var spatialResult = mainData.getSpatialResults()[currentSpatialResultIndex];
+	var url = spatialResult.getURL();
+	var type = spatialResult.getType();
+	var coordinates = spatialResult.getCoordinatesAsString();
+	var displayElement = document.getElementById("spatialSearchResultsDisplayPanel");
+	var table = '<table cellpadding="5">' 
+	    					+ '<tr><td>' 
+	    					+ '<b><a target="_blank" href="' + url + '">' + url + "</a></b>"
+	    					+ '</td></tr>' 
+	    					+ '<tr><td>Geometry: ' 
+	    					+ type
+	    					+ '</td></tr>'
+	    					+ '<tr><td>Coordinates: ' 
+	    					+ coordinates
+	    					+ '</td></tr>'
+	    					+ '</table>';
 	
-			if (lat > neLocationLat){
-				neLocationLat = parseFloat(lat);
-			}
-			if (lon > neLocationLon){
-				neLocationLon = parseFloat(lon);
-			}
-			
-	    }
-    
-    }
-    
-    swLocation = [swLocationLat, swLocationLon]
-    neLocation = [neLocationLat, neLocationLon]
-    
-    resultsMap.fitBounds([swLocation, neLocation]);*/
-    
+	displayElement.innerHTML = table;
+}
+
+function gotoSpatialSearchInputView(){
+	document.getElementById("spatialSearchResultsView").style.display = "none";
+	document.getElementById("spatialSearchInputView").style.display = "grid";
 }
 
 function redrawMap(){
 
+	document.getElementById("output").innerHTML = currentSpatialResultIndex;
+	
 	//Remove all current markers
 	for(var i = 0; i<oldMarkers.length; i++){
 		resultsMap.removeLayer(oldMarkers[i]);
@@ -77,9 +99,14 @@ function redrawMap(){
 		resultsMap.removeLayer(oldLines[i]);
 	}
 	
+	//Remove current spatial result
+	if(geoJSONLayer){
+		resultsMap.removeLayer(geoJSONLayer);
+	}
+	
 	//Create new markers for each location
 	var locations = $("#spatialSearchInputListBox").jqxListBox('getItems');
-	
+
 	if(locations){
 	
 		for(var i = 0; i<locations.length; i++){
@@ -131,10 +158,56 @@ function redrawMap(){
 	}
 	
 	var spatialResults = mainData.getSpatialResults();
-    for(var i=0; i<spatialResults.length; i++){
-    		L.geoJSON(spatialResults[i].getFeature()).addTo(resultsMap);
-    }
-	
+    geoJSONLayer = L.geoJSON(spatialResults[currentSpatialResultIndex].getFeature()).addTo(resultsMap);
+    
 	//setFitBounds();
 	
+}
+
+function setFitBounds(){
+
+	//Calculate a bounding box that will include all markers
+	/*var lat = $("#spatialSearchInputLatField").jqxInput('val');
+	var lon = $("#spatialSearchInputLonField").jqxInput('val');
+	
+	neLocationLat = parseFloat(lat);
+    neLocationLon = parseFloat(lon);
+    swLocationLat = parseFloat(lat);
+    swLocationLon = parseFloat(lon);
+    
+    var locations = $("#spatialSearchInputListBox").jqxListBox('getItems');
+    
+    if(locations){
+    
+	    for(var i = 0; i<locations.length; i++){
+			
+			var location = locations[i];
+			var locationLabel = location.label;
+			var locationLabelArray = locationLabel.split(",");
+			var lat = parseFloat(locationLabelArray[0]);
+			var lon = parseFloat(locationLabelArray[1]);
+			
+			if (lat < swLocationLat){
+				swLocationLat = parseFloat(lat);
+			}
+			if (lon < swLocationLon){
+				swLocationLon = parseFloat(lon);
+			}
+	
+			if (lat > neLocationLat){
+				neLocationLat = parseFloat(lat);
+			}
+			if (lon > neLocationLon){
+				neLocationLon = parseFloat(lon);
+			}
+			
+	    }
+    
+    }
+    
+    swLocation = [swLocationLat, swLocationLon]
+    neLocation = [neLocationLat, neLocationLon]
+    
+    resultsMap.fitBounds([swLocation, neLocation]);*/
+    
 }

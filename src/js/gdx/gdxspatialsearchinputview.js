@@ -151,8 +151,8 @@ function getGeoJSONString(){
 }
 
 function gotoSpatialSearchResultsView(){
-	document.getElementById("spatialSearchInputInputView").style.display = "none";
-	document.getElementById("spatialSearchInputResultsView").style.display = "grid";
+	document.getElementById("spatialSearchInputView").style.display = "none";
+	document.getElementById("spatialSearchResultsView").style.display = "grid";
 	initializeSpatialSearchResultsView();
 }
 

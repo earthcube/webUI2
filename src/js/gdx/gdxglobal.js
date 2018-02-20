@@ -9,3 +9,5 @@ var currentLocation;
 var upper;
 var precision = 5;
 var indexesParentElement = "";
+var currentSpatialResultIndex = 0;
+var geoJSONLayer;

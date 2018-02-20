@@ -94,7 +94,7 @@ function updateResultsListBox(provider){
 	    		var resultsListBoxDataRecord = resultsListBoxData[index];
 	    		var url = 		resultsListBoxDataRecord["URL"];
 	    		var score = 		parseFloat(resultsListBoxDataRecord["Score"]).toFixed(5);
-	    		var table = '<table>' 
+	    		var table = '<table cellpadding="5">' 
 	    					+ '<tr><td>' 
 	    					+ '<b><a target="_blank" href="' + url + '">' + url + "</a></b>"
 	    					+ '</td></tr>' 
