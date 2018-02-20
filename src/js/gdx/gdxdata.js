@@ -28,6 +28,7 @@ class MainData{
 	}
 	
 	populateSpatialResults(data){
+		this.clearSpatialResults();
 		var features = data["features"]
 		for(var i=0; i<features.length; i++){
 			var feature = 		features[i];
@@ -92,6 +93,7 @@ class Provider{
 	}
 	
 	populateTextResults(data){
+		this.clearTextResults();
 		for(var i=0; i<data.length; i++){
 			var position = 	data[i]["position"];
 			var score = 		data[i]["score"];
