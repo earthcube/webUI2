@@ -13,7 +13,7 @@ function initializeIndexCheckBoxes(){
 		newDiv.id = 'box_' + provider.getIndex();
  		parentDiv.appendChild(newDiv); 
 
- 		$("#" + newDiv.id).jqxCheckBox({ width: 120, height: 25, checked: true});
+ 		$("#" + newDiv.id).jqxCheckBox({ width: 120, height: 25, checked: true, theme: "darkblue"});
  		mainData.addSelectedProvider(provider);
  		
  		$("#" + newDiv.id).on('change', function(event){

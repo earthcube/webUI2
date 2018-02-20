@@ -30,18 +30,18 @@ function initializeSpatialSearchInputView(){
     marker = L.marker(currentLocation, {icon: greenIcon}).addTo(inputMap);
     
     //Create fields for location entry
-   	$("#spatialSearchInputLatField").jqxInput({height: componentHeight, width: '100%'});
-    $("#spatialSearchInputLonField").jqxInput({height: componentHeight, width: '100%'});
+   	$("#spatialSearchInputLatField").jqxInput({height: componentHeight, width: '100%', theme: "darkblue"});
+    $("#spatialSearchInputLonField").jqxInput({height: componentHeight, width: '100%', theme: "darkblue"});
     
     //Initialize field values 
     $("#spatialSearchInputLatField").jqxInput('val', currentLocation[0].toFixed(precision));
     $("#spatialSearchInputLonField").jqxInput('val', currentLocation[1].toFixed(precision));
     
     //Create buttons
-    $("#spatialSearchInputUpdateButton").jqxButton({ width: '100%', height: componentHeight });
-	$("#spatialSearchInputAddButton").jqxButton({ width: '100%', height: componentHeight });
-    $("#spatialSearchInputRemoveButton").jqxButton({ width: '100%', height: componentHeight });
-    $("#spatialSearchInputSubmitButton").jqxButton({ width: '100%', height: componentHeight });
+    $("#spatialSearchInputUpdateButton").jqxButton({ width: '100%', height: componentHeight, theme: "darkblue" });
+	$("#spatialSearchInputAddButton").jqxButton({ width: '100%', height: componentHeight, theme: "darkblue" });
+    $("#spatialSearchInputRemoveButton").jqxButton({ width: '100%', height: componentHeight, theme: "darkblue" });
+    $("#spatialSearchInputSubmitButton").jqxButton({ width: '100%', height: componentHeight, theme: "darkblue" });
    
     //Add event listeners to buttons
     $("#spatialSearchInputUpdateButton").on('click', spatialSearchInputUpdateButtonClicked);
@@ -50,7 +50,7 @@ function initializeSpatialSearchInputView(){
 	$("#spatialSearchInputSubmitButton").on("click", spatialSearchInputSubmitButtonClicked);
 	
 	//Create list for holding locations
-    $("#spatialSearchInputListBox").jqxListBox({height: '100%', width: '100%'});
+    $("#spatialSearchInputListBox").jqxListBox({height: '100%', width: '100%', theme: "darkblue"});
     
 	//Create error window 
     $('#gdxErrorWindow').jqxWindow({  
@@ -59,9 +59,10 @@ function initializeSpatialSearchInputView(){
         height: 140, 
         resizable: true,
         autoOpen: false,
-        isModal: true
+        isModal: true,
+        theme: "darkblue"
     });
-    $("#gdxErrorWindowOKButton").jqxButton({ width: 75, height: 30 });
+    $("#gdxErrorWindowOKButton").jqxButton({ width: 75, height: 30, theme: "darkblue" });
     $("#gdxErrorWindowOKButton").on("click", gdxErrorWindowOKButtonClicked);
     
     //Create wait window 
@@ -71,7 +72,8 @@ function initializeSpatialSearchInputView(){
         height: 140, 
         resizable: true,
         autoOpen: false,
-        isModal: true
+        isModal: true,
+        theme: "darkblue"
     });
     
 }

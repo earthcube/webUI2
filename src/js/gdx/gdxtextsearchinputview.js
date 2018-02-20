@@ -5,15 +5,15 @@ function initializeTextSearchInputView(){
 	document.getElementById("textSearchResultsView").style.display = "none";
 	
 	//Create text fields
-    $("#textSearchInputValueField").jqxInput({ width: '100%', height: componentHeight});
+    $("#textSearchInputValueField").jqxInput({ width: '100%', height: componentHeight, theme: "darkblue"});
     $("#textSearchInputValueField").jqxInput("val", "carbon");
     
     //Create number inputs
     $("#textSearchInputNumberInput").jqxNumberInput({ width: '100%', height: componentHeight, spinButtons: true, 
-    														inputMode: 'simple', decimalDigits: 0, spinButtonsStep: 10, readOnly: true});
+    														inputMode: 'simple', decimalDigits: 0, spinButtonsStep: 10, readOnly: true, theme: "darkblue"});
     
     //Create buttons
-    $("#textSearchInputSubmitButton").jqxButton({ width: "500px", height: componentHeight });
+    $("#textSearchInputSubmitButton").jqxButton({ width: "500px", height: componentHeight, theme: "darkblue" });
     
     //Add event listeners
     $('#textSearchInputSubmitButton').on('click', function (event) {
@@ -43,7 +43,8 @@ function initializeTextSearchInputView(){
         height: 140, 
         resizable: true,
         autoOpen: false,
-        isModal: true
+        isModal: true,
+        theme: "darkblue"
     });
     
     //Call and get current providers list

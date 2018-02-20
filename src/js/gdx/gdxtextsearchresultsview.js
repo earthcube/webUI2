@@ -1,13 +1,13 @@
 function initializeTextSearchResultsView(){
 
 	//Create buttons
-    $("#textSearchResultsBackButton").jqxButton({ width: "500px", height: componentHeight });
+    $("#textSearchResultsBackButton").jqxButton({ width: "500px", height: componentHeight, theme: "darkblue" });
 	
      $('#textSearchResultsBackButton').on('click', function (event) {
     		gotoTextSearchInputView();
 	});
     
-	$("#textSearchResultsSplitter").jqxSplitter({  width: "100%", height: 800, panels: [{ size: '40%'}] });
+	$("#textSearchResultsSplitter").jqxSplitter({  width: "100%", height: 800, panels: [{ size: '40%'}], theme: "darkblue" });
 	
 	var selectedProvidersWithTextResults = [];
 	for(var i=0; i<mainData.getSelectedProviders().length; i++){
@@ -32,7 +32,7 @@ function initializeTextSearchResultsView(){
     var providerListBoxDataAdapter = new $.jqx.dataAdapter(providerListBoxDataSource);
 
     $("#textSearchResultsProviderListBox").jqxListBox({ selectedIndex: 0, source: providerListBoxDataAdapter, 
-    		displayMember: "Name", valueMember: "Index", itemHeight: 100, width: "100%", height: 800,
+    		displayMember: "Name", valueMember: "Index", itemHeight: 100, width: "100%", height: 800, theme: "darkblue",
 	    	renderer: function (index, label, value){
 	    		var providerListBoxDataRecord = providerListBoxData[index];
 	    		var name = 			providerListBoxDataRecord["Name"];
@@ -62,7 +62,7 @@ function initializeTextSearchResultsView(){
 		updateResultsListBox(provider);
 	});
    	
-   	$("#textSearchResultsResultsListBox").jqxListBox({ width: "100%", height: 800 });
+   	$("#textSearchResultsResultsListBox").jqxListBox({ width: "100%", height: 800, theme: "darkblue" });
    	
    	updateResultsListBox(selectedProvidersWithTextResults[0]);
 }
