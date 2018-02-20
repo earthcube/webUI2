@@ -5,10 +5,15 @@ function initializeTextSearchInputView(){
 	document.getElementById("textSearchResultsView").style.display = "none";
 	
 	//Create text fields
-    $("#textSearchInputValueField").jqxInput({ width: '100%', height: componentHeight });
+    $("#textSearchInputValueField").jqxInput({ width: '100%', height: componentHeight});
+    $("#textSearchInputValueField").jqxInput("val", "carbon");
+    
+    //Create number inputs
+    $("#textSearchInputNumberInput").jqxNumberInput({ width: '100%', height: componentHeight, spinButtons: true, 
+    														inputMode: 'simple', decimalDigits: 0, spinButtonsStep: 10, readOnly: true});
     
     //Create buttons
-    $("#textSearchInputSubmitButton").jqxButton({ width: '100%', height: componentHeight });
+    $("#textSearchInputSubmitButton").jqxButton({ width: "500px", height: componentHeight });
     
     //Add event listeners
     $('#textSearchInputSubmitButton').on('click', function (event) {
@@ -18,7 +23,7 @@ function initializeTextSearchInputView(){
     	
 		if(mainData.getSelectedProviders().length==mainData.getProviders().length){
 			var keyArray = ["q", "s", "n"];
-    			var valueArray = [$("#textSearchInputValueField").jqxInput("val"), "0", "100"];
+    			var valueArray = [$("#textSearchInputValueField").jqxInput("val"), "0", $("#textSearchInputNumberInput").jqxNumberInput("val").toString()];
 			performWebServiceCall(WebServiceActions.TEXTINDEX_SEARCHSET, keyArray, valueArray, updateAfterTextindexSearchset);
 		}else{
 			/*for(var i=0; i<mainData.getSelectedProviders().length; i++){

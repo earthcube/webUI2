@@ -71,7 +71,7 @@ function performWebServiceCall(webServiceAction, keyArray, valueArray, updateFun
 
 	//Send to web service if POST
 	if(webServiceType=="POST"){
-		xmlhttp.open(webServiceType, requestURL, false);
+		xmlhttp.open(webServiceType, requestURL, true);
 		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		xmlhttp.send(args);
 		
@@ -80,7 +80,8 @@ function performWebServiceCall(webServiceAction, keyArray, valueArray, updateFun
 		if(args!=""){
 			requestURL += "?" + args;
 		}
-		xmlhttp.open(webServiceType, requestURL, false);
+		//document.getElementById("output").innerHTML = requestURL;
+		xmlhttp.open(webServiceType, requestURL, true);
 		xmlhttp.send(null);
 	}
 

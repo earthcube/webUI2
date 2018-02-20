@@ -25,6 +25,7 @@
     		<script type="text/javascript" src="js/jqwidgets/jqxsplitter.js"></script>
     		<script type="text/javascript" src="js/jqwidgets/jqxlistbox.js"></script>
     		<script type="text/javascript" src="js/jqwidgets/jqxdata.js"></script>
+    		<script type="text/javascript" src="js/jqwidgets/jqxnumberinput.js"></script>
 	
 	</head>
 
@@ -42,6 +43,14 @@
 					
 					<div class='textSearchInputValueField'>
 						<input type="text" value="" id='textSearchInputValueField'/>
+					</div>
+					
+					<div class='textSearchInputNumberLabel'>
+						Select Max Number of Results per Provider:
+					</div>
+					
+					<div class='textSearchInputNumberInput'>
+						<input type="number" value="10" min="10" max="250" id='textSearchInputNumberInput' />
 					</div>
 				
 				</div>
@@ -80,6 +89,10 @@
 						
 					</div>
 				
+				</div>
+				
+				<div class='textSearchResultsBackButton'>
+					<input type="button" value="Go Back to Geodex.org Search Input Fields" id='textSearchResultsBackButton' />
 				</div>
 			
 			</div>

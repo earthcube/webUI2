@@ -1,6 +1,13 @@
 function initializeTextSearchResultsView(){
 
-	$("#textSearchResultsSplitter").jqxSplitter({  width: "100%", height: 800, panels: [{ size: '25%'}] });
+	//Create buttons
+    $("#textSearchResultsBackButton").jqxButton({ width: "500px", height: componentHeight });
+	
+     $('#textSearchResultsBackButton').on('click', function (event) {
+    		gotoTextSearchInputView();
+	});
+    
+	$("#textSearchResultsSplitter").jqxSplitter({  width: "100%", height: 800, panels: [{ size: '40%'}] });
 	
 	var selectedProvidersWithTextResults = [];
 	for(var i=0; i<mainData.getSelectedProviders().length; i++){
@@ -16,6 +23,7 @@ function initializeTextSearchResultsView(){
 		var providerArray = {};
 		providerArray["Index"] = provider.getIndex();
 		providerArray["Name"] = provider.getName();
+		providerArray["NumResults"] = provider.getTextResults().length;
 		providerArray["Description"] = provider.getDescription();
 		providerArray["HighScore"] = provider.getHighScore();
 		providerListBoxData.push(providerArray);
@@ -24,11 +32,12 @@ function initializeTextSearchResultsView(){
     var providerListBoxDataAdapter = new $.jqx.dataAdapter(providerListBoxDataSource);
 
     $("#textSearchResultsProviderListBox").jqxListBox({ selectedIndex: 0, source: providerListBoxDataAdapter, 
-    		displayMember: "Name", valueMember: "Index", itemHeight: 70, width: "100%", height: 800,
+    		displayMember: "Name", valueMember: "Index", itemHeight: 100, width: "100%", height: 800,
 	    	renderer: function (index, label, value){
 	    		var providerListBoxDataRecord = providerListBoxData[index];
 	    		var name = 			providerListBoxDataRecord["Name"];
 	    		var description = 	providerListBoxDataRecord["Description"];
+	    		var numResults = 	providerListBoxDataRecord["NumResults"];
 	    		var highScore = 		parseFloat(providerListBoxDataRecord["HighScore"]).toFixed(5);
 	    		var table = '<table>' 
 	    					+ '<tr><td>' 
@@ -36,6 +45,9 @@ function initializeTextSearchResultsView(){
 	    					+ '</td></tr>' 
 	    					+ '<tr><td>' 
 	    					+ description
+	    					+ '</td></tr>'
+	    					+ '<tr><td>Number of Results: ' 
+	    					+ numResults
 	    					+ '</td></tr>'
 	    					+ '<tr><td>High Score: ' 
 	    					+ highScore

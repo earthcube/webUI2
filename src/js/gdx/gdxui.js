@@ -38,7 +38,7 @@ function initializeIndexCheckBoxes(){
  		
  		columnCounter++;
  		
- 		if(columnCounter==8){
+ 		if(columnCounter==6){
  			columnCounter = 0;
  			rowCounter++;
  		}
@@ -57,7 +57,7 @@ function initializeIndexCheckBoxes(){
 	parentDiv.style.display = "grid";
 	parentDiv.style.gridRowGap = "10px";
 	parentDiv.style.gridColumnGap = "10px";
-	parentDiv.style.gridTemplateColumns = "20px 180px 20px 180px 20px 180px 20px 180px";
+	parentDiv.style.gridTemplateColumns = "20px 247px 20px 247px 20px 246px";
 	parentDiv.style.gridTemplateRows = gridTemplateRows;
 	
 }
