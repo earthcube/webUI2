@@ -189,8 +189,6 @@ function redrawInputMap(){
 	
 	var lat = parseFloat($("#spatialSearchInputLatField").jqxInput('val'));
 	var lon = parseFloat($("#spatialSearchInputLonField").jqxInput('val'));
-	//var latlng = L.latLng(lat, lon);
-	//marker.setLatLng(latlng);
 	
 	//Create an initial marker and set color to green for current location
     var greenIcon = new L.Icon({
