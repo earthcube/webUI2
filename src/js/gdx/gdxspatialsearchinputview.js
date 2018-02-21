@@ -124,7 +124,7 @@ function spatialSearchInputRemoveButtonClicked(){
 	//Remove the selected location
 	var item = $("#spatialSearchInputListBox").jqxListBox('getSelectedItem'); 
 	$("#spatialSearchInputListBox").jqxListBox('removeItem', item);
-	redrawMap();
+	redrawInputMap();
 }
 
 function spatialSearchInputSubmitButtonClicked(){

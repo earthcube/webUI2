@@ -1,32 +1,40 @@
 function initializeSpatialSearchResultsView(){
 	
-	currentSpatialResultIndex = 0;
-	currentLocation = [40.0150, -105.2705]
+	if(!spatialSearchResultsViewInitialized){
+		
+		//Create buttons
+		$("#spatialSearchResultsPreviousButton").jqxButton({ width: '150px', height: componentHeight, theme: "darkblue", disabled: true });
+		$("#spatialSearchResultsNextButton").jqxButton({ width: '150px', height: componentHeight, theme: "darkblue" });
+		$("#spatialSearchResultsBackButton").jqxButton({ width: "333px", height: componentHeight, theme: "darkblue" });
+		
+	    $('#spatialSearchResultsBackButton').on('click', function (event) {
+	    		gotoSpatialSearchInputView();
+		});
+		
+		//Add action listeners
+		$("#spatialSearchResultsPreviousButton").on('click', spatialSearchResultsPreviousButtonClicked);
+		$("#spatialSearchResultsNextButton").on('click', spatialSearchResultsNextButtonClicked);
+		
+		//Give a dummy location to initialize map with
+		currentLocation = [40.0150, -105.2705]
+		
+	    //Create Leaflet Map
+		if(!resultsMap){
+		    resultsMap = L.map('spatialSearchResultsMap').setView(currentLocation, 13);
+		    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiZWxpbmdlcmYiLCJhIjoiY2pjamhlZTl1NGRxazJxbzU0OHE5d3ZxNyJ9.n7A_BBoZxnpA2izU3McwSQ', {
+		        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+		        maxZoom: 18,
+		        id: 'mapbox.streets',
+		        accessToken: 'pk.eyJ1IjoiZWxpbmdlcmYiLCJhIjoiY2pjamhlZTl1NGRxazJxbzU0OHE5d3ZxNyJ9.n7A_BBoZxnpA2izU3McwSQ'
+		    }).addTo(resultsMap);
+		}
+		spatialSearchResultsViewInitialized = true;
+	}
 	
-	//Create buttons
-	$("#spatialSearchResultsPreviousButton").jqxButton({ width: '150px', height: componentHeight, theme: "darkblue", disabled: true });
-	$("#spatialSearchResultsNextButton").jqxButton({ width: '150px', height: componentHeight, theme: "darkblue" });
-	$("#spatialSearchResultsBackButton").jqxButton({ width: "333px", height: componentHeight, theme: "darkblue" });
-	
-     $('#spatialSearchResultsBackButton').on('click', function (event) {
-    		gotoSpatialSearchInputView();
-	});
-	
-	//Add action listeners
-	$("#spatialSearchResultsPreviousButton").on('click', spatialSearchResultsPreviousButtonClicked);
-	$("#spatialSearchResultsNextButton").on('click', spatialSearchResultsNextButtonClicked);
-	
-    //Create Leaflet Map
-    resultsMap = L.map('spatialSearchResultsMap').setView(currentLocation, 13);
-    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiZWxpbmdlcmYiLCJhIjoiY2pjamhlZTl1NGRxazJxbzU0OHE5d3ZxNyJ9.n7A_BBoZxnpA2izU3McwSQ', {
-        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-        maxZoom: 18,
-        id: 'mapbox.streets',
-        accessToken: 'pk.eyJ1IjoiZWxpbmdlcmYiLCJhIjoiY2pjamhlZTl1NGRxazJxbzU0OHE5d3ZxNyJ9.n7A_BBoZxnpA2izU3McwSQ'
-    }).addTo(resultsMap);
-   
+   	currentSpatialResultIndex = 0;
     redrawResultsMap();
     updateResultDisplay();
+    
 }
 
 function spatialSearchResultsPreviousButtonClicked(){

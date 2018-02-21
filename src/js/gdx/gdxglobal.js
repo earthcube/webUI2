@@ -11,3 +11,5 @@ var precision = 5;
 var indexesParentElement = "";
 var currentSpatialResultIndex = 0;
 var geoJSONLayer;
+var spatialSearchResultsViewInitialized = false;
+var textSearchResultsViewInitialized = false;

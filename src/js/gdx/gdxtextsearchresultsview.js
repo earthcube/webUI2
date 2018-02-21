@@ -1,13 +1,25 @@
 function initializeTextSearchResultsView(){
 
-	//Create buttons
-    $("#textSearchResultsBackButton").jqxButton({ width: "333px", height: componentHeight, theme: "darkblue" });
-	
-     $('#textSearchResultsBackButton').on('click', function (event) {
-    		gotoTextSearchInputView();
-	});
-    
-	$("#textSearchResultsSplitter").jqxSplitter({  width: "100%", height: 800, panels: [{ size: '40%'}], theme: "darkblue" });
+	if(!textSearchResultsViewInitialized){
+		
+		//Create buttons
+	    $("#textSearchResultsBackButton").jqxButton({ width: "333px", height: componentHeight, theme: "darkblue" });
+		
+	    $('#textSearchResultsBackButton').on('click', function (event) {
+	    		gotoTextSearchInputView();
+		});
+	    
+		$("#textSearchResultsSplitter").jqxSplitter({  width: "100%", height: 800, panels: [{ size: '40%'}], theme: "darkblue" });
+		
+		$("#textSearchResultsProviderListBox").on("select", function (event) {
+   			var provider = selectedProvidersWithTextResults[event.args.index];
+			updateResultsListBox(provider);
+		});
+   	
+   		$("#textSearchResultsResultsListBox").jqxListBox({ width: "100%", height: 800, theme: "darkblue" });
+		
+		textSearchResultsViewInitialized = true;
+	}
 	
 	var selectedProvidersWithTextResults = [];
 	for(var i=0; i<mainData.getSelectedProviders().length; i++){
@@ -56,14 +68,7 @@ function initializeTextSearchResultsView(){
 	    		return table;
 	    	}
     });
-      
-   	$("#textSearchResultsProviderListBox").on("select", function (event) {
-   		var provider = selectedProvidersWithTextResults[event.args.index];
-		updateResultsListBox(provider);
-	});
-   	
-   	$("#textSearchResultsResultsListBox").jqxListBox({ width: "100%", height: 800, theme: "darkblue" });
-   	
+     
    	updateResultsListBox(selectedProvidersWithTextResults[0]);
 }
 
