@@ -1,7 +1,7 @@
 function initializeTextSearchResultsView(){
 
 	//Create buttons
-    $("#textSearchResultsBackButton").jqxButton({ width: "500px", height: componentHeight, theme: "darkblue" });
+    $("#textSearchResultsBackButton").jqxButton({ width: "333px", height: componentHeight, theme: "darkblue" });
 	
      $('#textSearchResultsBackButton').on('click', function (event) {
     		gotoTextSearchInputView();

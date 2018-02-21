@@ -13,7 +13,7 @@ function initializeTextSearchInputView(){
     														inputMode: 'simple', decimalDigits: 0, spinButtonsStep: 10, readOnly: true, theme: "darkblue"});
     
     //Create buttons
-    $("#textSearchInputSubmitButton").jqxButton({ width: "500px", height: componentHeight, theme: "darkblue" });
+    $("#textSearchInputSubmitButton").jqxButton({ width: "333px", height: componentHeight, theme: "darkblue" });
     
     //Add event listeners
     $('#textSearchInputSubmitButton').on('click', function (event) {
