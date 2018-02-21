@@ -84,6 +84,25 @@ function badLocation(){
 	return isNaN(lat) || isNaN(lon);
 }
 
+function locationExists(){
+	var lat = parseFloat($("#spatialSearchInputLatField").jqxInput('val'));
+	var lon = parseFloat($("#spatialSearchInputLonField").jqxInput('val'));
+	var locations = $("#spatialSearchInputListBox").jqxListBox('getItems');
+ 	if(locations){
+    		for(var i = 0; i<locations.length; i++){
+			var location = locations[i];
+			var locationLabel = location.label;
+			var locationLabelArray = locationLabel.split(",");
+			var latTemp = parseFloat(locationLabelArray[0]);
+			var lonTemp = parseFloat(locationLabelArray[1]);
+			if(latTemp==lat && lonTemp==lon){
+				return true;
+			}
+    		}
+ 	}
+ 	return false;
+}
+
 function gdxErrorWindowOKButtonClicked(){
 	$('#gdxErrorWindow').jqxWindow('close');
 }
@@ -112,8 +131,10 @@ function spatialSearchInputAddButtonClicked(){
 	var lat = $("#spatialSearchInputLatField").jqxInput('val');
 	var lon = $("#spatialSearchInputLonField").jqxInput('val');
 	if(!badLocation()){
-		$("#spatialSearchInputListBox").jqxListBox('addItem', parseFloat(lat).toFixed(precision) + ", " + parseFloat(lon).toFixed(precision));
-		redrawInputMap();
+		if(!locationExists()){
+			$("#spatialSearchInputListBox").jqxListBox('addItem', parseFloat(lat).toFixed(precision) + ", " + parseFloat(lon).toFixed(precision));
+			redrawInputMap();
+		}
 	}else{
 		document.getElementById("gdxErrorWindowMessage").innerHTML = "Please enter numeric values for Latitude and Longitude.";
 		$('#gdxErrorWindow').jqxWindow('open');
@@ -165,6 +186,24 @@ function updateAfterSpatialSearchObject(data){
 }
 
 function redrawInputMap(){
+	
+	var lat = parseFloat($("#spatialSearchInputLatField").jqxInput('val'));
+	var lon = parseFloat($("#spatialSearchInputLonField").jqxInput('val'));
+	//var latlng = L.latLng(lat, lon);
+	//marker.setLatLng(latlng);
+	
+	//Create an initial marker and set color to green for current location
+    var greenIcon = new L.Icon({
+	    	iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+	    	shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+	    	iconSize: [25, 41],
+	    	iconAnchor: [12, 41],
+	    	popupAnchor: [1, -34],
+	    	shadowSize: [41, 41]
+    });
+
+    //Add marker to map
+    marker = L.marker([lat, lon], {icon: greenIcon}).addTo(inputMap);
 	
 	//Remove all current markers
 	for(var i = 0; i<oldMarkers.length; i++){
@@ -276,7 +315,7 @@ function setFitBoundsForInputMap(){
     
     swLocation = [swLocationLat, swLocationLon]
     neLocation = [neLocationLat, neLocationLon]
-    
+
     inputMap.fitBounds([swLocation, neLocation]);
     
 }
