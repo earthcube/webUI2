@@ -156,14 +156,14 @@ function redrawResultsMap(){
 	var spatialResults = mainData.getSpatialResults();
     geoJSONLayer = L.geoJSON(spatialResults[currentSpatialResultIndex].getFeature()).addTo(resultsMap);
     
-	//setFitBounds();
+	setFitBounds();
 	
 }
 
 function setFitBounds(){
 
 	//Calculate a bounding box that will include all markers
-	/*var lat = $("#spatialSearchInputLatField").jqxInput('val');
+	var lat = $("#spatialSearchInputLatField").jqxInput('val');
 	var lon = $("#spatialSearchInputLonField").jqxInput('val');
 	
 	neLocationLat = parseFloat(lat);
@@ -201,9 +201,34 @@ function setFitBounds(){
     
     }
     
+    var spatialResult = mainData.getSpatialResults()[currentSpatialResultIndex];
+    var coordinates = spatialResult.getCoordinatesAsArray();
+ 
+    for(var i=0; i<coordinates.length; i++){
+    	
+    		var lat = parseFloat(coordinates[i][0]);
+		var lon = parseFloat(coordinates[i][1]);
+		
+		if (lat < swLocationLat){
+			swLocationLat = parseFloat(lat);
+		}
+		
+		if (lon < swLocationLon){
+			swLocationLon = parseFloat(lon);
+		}
+
+		if (lat > neLocationLat){
+			neLocationLat = parseFloat(lat);
+		}
+		
+		if (lon > neLocationLon){
+			neLocationLon = parseFloat(lon);
+		}
+    }
+    
     swLocation = [swLocationLat, swLocationLon]
     neLocation = [neLocationLat, neLocationLon]
     
-    resultsMap.fitBounds([swLocation, neLocation]);*/
+    resultsMap.fitBounds([swLocation, neLocation]);
     
 }

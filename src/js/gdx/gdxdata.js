@@ -187,6 +187,16 @@ class SpatialResult{
     		return string;
 	}
 	
+	getCoordinatesAsArray(){
+		var array = [];
+		for(var i=0; i<this.coordinates.length; i++){
+			var lat = this.coordinates[i][0];
+			var lon = this.coordinates[i][1];
+			array.push([lat, lon]);
+		}
+    		return array;
+	}
+	
 	getCoordinates(){
 		return this.coordinates;
 	}
