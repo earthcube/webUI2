@@ -1,7 +1,7 @@
 @CHARSET "UTF-8";
 
 #textSearchInputView{
-	width: 800px;
+	width: 1000px;
 	margin: 0 auto; 
 }
 
@@ -10,14 +10,14 @@
 	grid-row-gap: 30px;
 	grid-column-gap: 5px;
 	grid-template-columns: auto;
-	grid-template-rows: auto auto auto;
+	grid-template-rows: auto auto auto auto;
 }
 
 .textSearchInputPanel1{
 	display: grid;
 	grid-row-gap: 20px;
 	grid-column-gap: 10px;
-	grid-template-columns: 200px 200px 200px 200px;
+	grid-template-columns: 250px 250px 250px 250px;
 	grid-template-rows: auto auto;
 }
 
@@ -40,7 +40,7 @@
 }
 
 .textSearchInputNumberLabel{
-	margin-top: 0px;
+	margin-top: 7px;
 	font-size: 13px; 
 	font-family: Verdana; 
 	text-align: right;
@@ -58,15 +58,16 @@
 }
 
 .textSearchInputPanel2{
-
+	justify-self: center;
 }
 
 .textSearchInputPanel3{
 	display: grid;
 	grid-row-gap: 20px;
 	grid-column-gap: 10px;
-	grid-template-columns: 20px 380px 20px 380px;
+	grid-template-columns: 20px 480px 20px 480px;
 	grid-template-rows: auto;
+	justify-self: center;
 }
 
 .textSearchInputSetButton{

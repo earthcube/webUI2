@@ -214,8 +214,8 @@ function setFitBounds(){
  
     for(var i=0; i<coordinates.length; i++){
     	
-    		var lat = parseFloat(coordinates[i][0]);
-		var lon = parseFloat(coordinates[i][1]);
+    		var lat = parseFloat(coordinates[i][1]);
+		var lon = parseFloat(coordinates[i][0]);
 		
 		if (lat < swLocationLat){
 			swLocationLat = parseFloat(lat);

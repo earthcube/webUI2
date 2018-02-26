@@ -4,7 +4,6 @@ function initializeTextSearchResultsView(){
 		
 		//Create buttons
 	    $("#textSearchResultsBackButton").jqxButton({ width: "333px", height: componentHeight, theme: "darkblue" });
-		
 	    $('#textSearchResultsBackButton').on('click', function (event) {
 	    		gotoTextSearchInputView();
 		});
@@ -17,8 +16,7 @@ function initializeTextSearchResultsView(){
 		});
    	
    		$("#textSearchResultsResultsListBox").jqxListBox({ width: "100%", height: 800, theme: "darkblue" });
-   		
-   		$("#textSearchResultsResultsListBox2").jqxListBox({ width: 800, height: 800, theme: "darkblue" });
+   		$("#textSearchResultsResultsListBox2").jqxListBox({ width: "100%", height: 800, theme: "darkblue" });
 		
 		textSearchResultsViewInitialized = true;
 	}

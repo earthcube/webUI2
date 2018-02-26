@@ -115,8 +115,6 @@ function spatialSearchInputUpdateButtonClicked(){
 	if(!badLocation()){
 		$("#spatialSearchInputLatField").jqxInput('val', parseFloat(lat).toFixed(precision));
     		$("#spatialSearchInputLonField").jqxInput('val', parseFloat(lon).toFixed(precision));
-		var latlng = L.latLng(lat, lon);
-		marker.setLatLng(latlng);
 		redrawInputMap();
 	}else{
 		document.getElementById("gdxErrorWindowMessage").innerHTML = "Please enter numeric values for Latitude and Longitude.";

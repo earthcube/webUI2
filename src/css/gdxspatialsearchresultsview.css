@@ -8,13 +8,14 @@
 #spatialSearchResultsMap{ 
 	width: 1000px; 
 	height: 600px; 
+	border: 1px solid #004A73;
 }
 
 .spatialSearchResultsPanel{
 	display: grid;
 	grid-row-gap: 15px;
 	grid-template-columns: auto;
-	grid-template-rows: auto;
+	grid-template-rows: auto auto;
 }
 
 .spatialSearchResultsPanel1{
@@ -30,6 +31,7 @@
   	grid-column-end: 2;
   	grid-row-start: 1;
   	grid-row-end: 2;
+  	justify-self: left;
 }
 
 .spatialSearchResultsDisplayPanel{
@@ -44,11 +46,13 @@
 }
 
 .spatialSearchResultsNextButton{
+	margin-right: 16px;
 	margin-top: 50px;
 	grid-column-start: 3;
   	grid-column-end: 4;
   	grid-row-start: 1;
   	grid-row-end: 2;
+  	justify-self: right;
 }
 
 .spatialSearchResultsPanel2{
