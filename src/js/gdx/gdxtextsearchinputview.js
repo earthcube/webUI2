@@ -8,6 +8,10 @@ function initializeTextSearchInputView(){
     $("#textSearchInputValueField").jqxInput({ width: '100%', height: componentHeight, theme: "darkblue"});
     $("#textSearchInputValueField").jqxInput("val", "carbon");
     
+    //Create radio buttons
+    $("#textSearchInputSetButton").jqxRadioButton({ width: 250, height: 25, checked: true, theme: "darkblue"});
+    $("#textSearchInputIndexButton").jqxRadioButton({ width: 250, height: 25, theme: "darkblue"});
+    
     //Create number inputs
     $("#textSearchInputNumberInput").jqxNumberInput({ width: '100%', height: componentHeight, spinButtons: true, 
     														inputMode: 'simple', decimalDigits: 0, spinButtonsStep: 10, readOnly: true, theme: "darkblue"});
@@ -21,21 +25,40 @@ function initializeTextSearchInputView(){
     		document.getElementById("gdxWaitWindowMessage").innerHTML = "Please wait while data is loaded from Geodex.org.";
 		$('#gdxWaitWindow').jqxWindow('open');
     	
-		if(mainData.getSelectedProviders().length==mainData.getProviders().length){
+		mainData.clearSelectedProviders();
+		for(var i=0; i<mainData.getProviders().length; i++){
+			var provider = mainData.getProviders()[i];
+			var index = provider.getIndex();
+			var checked = $("#" + index.toString()).jqxCheckBox('checked');
+			if(checked){
+				mainData.addSelectedProvider(provider);
+			}
+		}
+		
+		if($("#textSearchInputSetButton").jqxRadioButton('val')){
+			
 			var keyArray = ["q", "s", "n"];
     			var valueArray = [$("#textSearchInputValueField").jqxInput("val"), "0", $("#textSearchInputNumberInput").jqxNumberInput("val").toString()];
 			performWebServiceCall(WebServiceActions.TEXTINDEX_SEARCHSET, keyArray, valueArray, updateAfterTextindexSearchset);
-		}else{
-			/*for(var i=0; i<mainData.getSelectedProviders().length; i++){
+			
+		}else if($("#textSearchInputIndexButton").jqxRadioButton('val')){
+			
+			var indexes = "";
+			for(var i=0; i<mainData.getSelectedProviders().length; i++){
 				var provider = mainData.getSelectedProviders()[i];
-				var keyArray = ["q", "s", "n", "i"];
-    				var valueArray = [$("#textSearchInputValueField").jqxInput("val"), "0", "100", provider.getIndex()];
-				performWebServiceCall(WebServiceActions.TEXTINDEX_SEARCH, keyArray, valueArray, updateAfterTextindexSearch);
-			}*/
+				indexes += provider.getIndex();
+				if(i<(mainData.getSelectedProviders().length-1)){
+					indexes += ",";
+				}
+			}
+			var keyArray = ["q", "s", "n", "i"];
+    			var valueArray = [$("#textSearchInputValueField").jqxInput("val"), "0", $("#textSearchInputNumberInput").jqxNumberInput("val").toString(), indexes];
+			performWebServiceCall(WebServiceActions.TEXTINDEX_SEARCH, keyArray, valueArray, updateAfterTextindexSearch);
+			
 		}
 		
 	});
-    
+   
     //Create wait window 
     $('#gdxWaitWindow').jqxWindow({  
     		title: 'Please Wait...',
@@ -73,5 +96,6 @@ function updateAfterTextindexSearchset(data){
 
 function updateAfterTextindexSearch(data){
 	$('#gdxWaitWindow').jqxWindow('close');
-	mainData.populateSelectedProviderTextResults(data);
+	mainData.populateTextResults(data);
+	gotoTextSearchResultsView();
 }

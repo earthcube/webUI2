@@ -4,6 +4,7 @@ class MainData{
 		this.providers = [];
 		this.selectedProviders = [];
 		this.spatialResults = [];
+		this.textResults = [];
 	}
 	
 	processProviders(data){
@@ -22,8 +23,10 @@ class MainData{
 			var dataProviderHighScore = 	data[i]["highscore"];
 			var dataResultSetObject = 	data[i]["or"];
 			var provider = this.getSelectedProviderByIndex(dataProviderIndex);
-			provider.setHighScore(dataProviderHighScore);
-			provider.populateTextResults(dataResultSetObject);
+			if(provider){
+				provider.setHighScore(dataProviderHighScore);
+				provider.populateTextResults(dataResultSetObject);
+			}
 		}
 	}
 	
@@ -37,6 +40,17 @@ class MainData{
 			var coordinates = 	feature["geometry"]["coordinates"];
 			var spatialResult = new SpatialResult(feature, url, type, coordinates);
 			this.addSpatialResult(spatialResult);
+		}
+	}
+	
+	populateTextResults(data){
+		this.clearTextResults();
+		for(var i=0; i<data.length; i++){
+			var position = 	data[i]["position"];
+			var score = 		data[i]["score"];
+			var url = 		data[i]["URL"];
+			var textResult = new TextResult(position, score, url);
+			this.addTextResult(textResult);
 		}
 	}
 	
@@ -57,8 +71,8 @@ class MainData{
 		this.selectedProviders.push(provider);
 	}
 	
-	removeSelectedProvider(provider){
-		remove(this.providers, provider);
+	clearSelectedProviders(){
+		this.selectedProviders = [];
 	}
 	
 	getProviders(){
@@ -79,6 +93,18 @@ class MainData{
 	
 	clearSpatialResults(){
 		this.spatialResults = [];
+	}
+	
+	clearTextResults(){
+		this.textResults = [];
+	}
+	
+	getTextResults(){
+		return this.textResults;
+	}
+	
+	addTextResult(textResult){
+		this.textResults.push(textResult);
 	}
 	
 }

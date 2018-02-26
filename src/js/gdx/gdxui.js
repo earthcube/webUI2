@@ -3,38 +3,27 @@ function initializeIndexCheckBoxes(){
 	var columnCounter = 0;
 	var rowCounter = 0;
 	var providers = mainData.getProviders();
+	var parentDiv = document.getElementById(indexesParentElement);
 	
 	for(var i=0; i<providers.length; i++){
 		
 		var provider = providers[i];
-		var parentDiv = document.getElementById(indexesParentElement);
-		
-		var newDiv = document.createElement("div"); 
-		newDiv.id = 'box_' + provider.getIndex();
- 		parentDiv.appendChild(newDiv); 
+		var newBoxDiv = document.createElement("div"); 
+		newBoxDiv.id = provider.getIndex();
+ 		parentDiv.appendChild(newBoxDiv); 
 
- 		$("#" + newDiv.id).jqxCheckBox({ width: 120, height: 25, checked: true, theme: "darkblue"});
- 		mainData.addSelectedProvider(provider);
- 		
- 		$("#" + newDiv.id).on('change', function(event){
-            var checked = event.args.checked;
-            if(checked){
-            		mainData.addSelectedProvider(provider);
-            }else{
-                mainData.removeSelectedProvider(provider);
-            }
-        });
+ 		$("#" + newBoxDiv.id).jqxCheckBox({ width: 120, height: 25, checked: true, theme: "darkblue"});
 
  		columnCounter++;
  		
- 		var newDiv = document.createElement("div"); 
-		newDiv.id = "label_" + provider.getIndex();
- 		parentDiv.appendChild(newDiv); 
- 		newDiv.innerHTML = provider.getName();
- 		newDiv.style.marginTop = "5px";
-		newDiv.style.fontSize = "13px"; 
-		newDiv.style.fontFamily = "Verdana"; 
-		newDiv.style.textAlign = "left";
+ 		var newLabelDiv = document.createElement("div"); 
+		newLabelDiv.id = "label_" + provider.getIndex();
+ 		parentDiv.appendChild(newLabelDiv); 
+ 		newLabelDiv.innerHTML = provider.getName();
+ 		newLabelDiv.style.marginTop = "5px";
+		newLabelDiv.style.fontSize = "13px"; 
+		newLabelDiv.style.fontFamily = "Verdana"; 
+		newLabelDiv.style.textAlign = "left";
  		
  		columnCounter++;
  		

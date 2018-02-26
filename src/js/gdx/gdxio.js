@@ -39,9 +39,6 @@ function performWebServiceCall(webServiceAction, keyArray, valueArray, updateFun
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
 			//alert(xmlhttp.responseText);
 			var data = JSON.parse(xmlhttp.responseText);
-			if(webServiceAction==WebServiceActions.TYPEAHEAD_PROVIDERS){
-				data = JSON.parse('[{"name":"OpenCore","description":"Open Core Data","index":"ocd"},{"name":"BCO-DMO","description":"Biological and Chemical Oceanography Data Management Office","index":"bcodmo"},{"name":"LinkedEarth","description":"EARTHCUBE Linked Earth Building Block","index":"linkedearth"},{"name":"IEDA","description":"Interdisciplinary Earth Data Alliance ","index":"ieda"},{"name":"EarthCube RWG","description":"EarthCube Council of Data Facilities Registry Working Group","index":"rwg"} ,{"name":"CSDCO","description":"CSDCO","index":"csdco"},{"name":"Neotoma","description":"Neotoma","index":"neotoma"}]');
-			}
 			//document.getElementById("output").innerHTML = JSON.stringify(data);
 			updateFunction(data);
 		}
@@ -81,6 +78,7 @@ function performWebServiceCall(webServiceAction, keyArray, valueArray, updateFun
 			requestURL += "?" + args;
 		}
 		//document.getElementById("output").innerHTML = requestURL;
+		//alert(requestURL);
 		xmlhttp.open(webServiceType, requestURL, true);
 		xmlhttp.send(null);
 	}

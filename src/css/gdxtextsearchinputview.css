@@ -63,6 +63,49 @@
 
 .textSearchInputPanel3{
 	display: grid;
+	grid-row-gap: 20px;
+	grid-column-gap: 10px;
+	grid-template-columns: 20px 380px 20px 380px;
+	grid-template-rows: auto;
+}
+
+.textSearchInputSetButton{
+	grid-column-start: 1;
+  	grid-column-end: 2;
+  	grid-row-start: 1;
+  	grid-row-end: 2;
+}
+
+.textSearchInputSetLabel{
+	margin-top: 4px;
+	font-size: 13px; 
+	font-family: Verdana; 
+	text-align: left;
+	grid-column-start: 2;
+  	grid-column-end: 3;
+  	grid-row-start: 1;
+  	grid-row-end: 2;
+}
+
+.textSearchInputIndexButton{
+	grid-column-start: 3;
+  	grid-column-end: 4;
+  	grid-row-start: 1;
+  	grid-row-end: 2;
+}
+
+.textSearchInputIndexLabel{
+	margin-top: 4px;
+	font-size: 13px; 
+	font-family: Verdana;
+	grid-column-start: 4;
+  	grid-column-end: 5;
+  	grid-row-start: 1;
+  	grid-row-end: 2;
+}
+
+.textSearchInputPanel4{
+	display: grid;
 	grid-gap: 10px;
 	grid-template-columns: auto;
 	grid-template-rows: auto;
