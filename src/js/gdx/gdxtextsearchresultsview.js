@@ -8,15 +8,15 @@ function initializeTextSearchResultsView(){
 	    		gotoTextSearchInputView();
 		});
 	    
-		$("#textSearchResultsSplitter").jqxSplitter({  width: "100%", height: 800, panels: [{ size: '40%'}], theme: "darkblue" });
+		$("#textSearchResultsSplitter").jqxSplitter({  width: "100%", height: 600, panels: [{ size: '40%'}], theme: "darkblue" });
 		
 		$("#textSearchResultsProviderListBox").on("select", function (event) {
    			var provider = selectedProvidersWithTextResults[event.args.index];
 			updateResultsListBox(provider);
 		});
    	
-   		$("#textSearchResultsResultsListBox").jqxListBox({ width: "100%", height: 800, theme: "darkblue" });
-   		$("#textSearchResultsResultsListBox2").jqxListBox({ width: "100%", height: 800, theme: "darkblue" });
+   		$("#textSearchResultsResultsListBox").jqxListBox({ width: "100%", height: 600, theme: "darkblue" });
+   		$("#textSearchResultsResultsListBox2").jqxListBox({ width: "100%", height: 600, theme: "darkblue" });
 		
 		textSearchResultsViewInitialized = true;
 	}
@@ -51,7 +51,7 @@ function initializeTextSearchResultsView(){
 	    $("#textSearchResultsProviderListBox").jqxListBox('clear'); 
 		$("#textSearchResultsProviderListBox").jqxListBox('beginUpdate'); 
 	    $("#textSearchResultsProviderListBox").jqxListBox({ selectedIndex: 0, source: providerListBoxDataAdapter, 
-	    		displayMember: "Name", valueMember: "Index", itemHeight: 100, width: "100%", height: 800, theme: "darkblue",
+	    		displayMember: "Name", valueMember: "Index", itemHeight: 100, width: "100%", height: 600, theme: "darkblue",
 		    	renderer: function (index, label, value){
 		    		var providerListBoxDataRecord = providerListBoxData[index];
 		    		var name = 			providerListBoxDataRecord["Name"];

@@ -6,15 +6,16 @@
 }
 
 #spatialSearchInputMap{ 
+	margin-top: 20px;
 	width: 1000px; 
-	height: 600px; 
+	height: 500px; 
 	border: 1px solid #004A73;
 }
 
 .spatialSearchInputPanel{
 	display: grid;
 	margin-top: 20px;
-	grid-row-gap: 30px;
+	grid-row-gap: 25px;
 	grid-template-columns: auto;
 	grid-template-rows: auto auto auto auto;
 }

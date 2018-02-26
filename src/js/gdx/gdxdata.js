@@ -202,11 +202,11 @@ class SpatialResult{
 	
 	getCoordinatesAsString(){
 		var string = "";
-		for(var i=0; i<this.coordinates.length; i++){
-			var lat = this.coordinates[i][0];
-			var lon = this.coordinates[i][1];
+		for(var i=0; i<(this.coordinates.length-1); i++){
+			var lat = this.coordinates[i][1];
+			var lon = this.coordinates[i][0];
 			string += "[" + lat + ", " + lon + "]";
-			if(i<(this.coordinates.length-1)){
+			if(i<(this.coordinates.length-2)){
 				string += ", ";
 			}
 		}

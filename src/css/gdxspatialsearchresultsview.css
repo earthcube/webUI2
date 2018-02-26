@@ -6,14 +6,15 @@
 }
 
 #spatialSearchResultsMap{ 
+	margin-top: 20px;
 	width: 1000px; 
-	height: 600px; 
+	height: 500px; 
 	border: 1px solid #004A73;
 }
 
 .spatialSearchResultsPanel{
 	display: grid;
-	grid-row-gap: 15px;
+	grid-row-gap: 10px;
 	grid-template-columns: auto;
 	grid-template-rows: auto auto;
 }

@@ -6,6 +6,7 @@
 }
 
 .textSearchResultsPanel{
+	margin-top: 30px;
 	display: grid;
 	grid-row-gap: 15px;
 	grid-column-gap: 5px;
@@ -33,6 +34,7 @@
 }
 
 .textSearchResultsBackButton{
+	margin-top: 30px;
 	grid-column-start: 1;
   	grid-column-end: 2;
   	grid-row-start: 2;

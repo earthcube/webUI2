@@ -10,6 +10,7 @@ function initializeIndexCheckBoxes(){
 		var provider = providers[i];
 		var newBoxDiv = document.createElement("div"); 
 		newBoxDiv.id = provider.getIndex();
+		newBoxDiv.style.marginLeft = "70px";
  		parentDiv.appendChild(newBoxDiv); 
 
  		$("#" + newBoxDiv.id).jqxCheckBox({ width: 120, height: 25, checked: true, theme: "darkblue"});
@@ -24,6 +25,7 @@ function initializeIndexCheckBoxes(){
 		newLabelDiv.style.fontSize = "13px"; 
 		newLabelDiv.style.fontFamily = "Verdana"; 
 		newLabelDiv.style.textAlign = "left";
+		newLabelDiv.style.marginLeft = "70px";
  		
  		columnCounter++;
  		
