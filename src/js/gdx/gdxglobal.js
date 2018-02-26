@@ -13,3 +13,4 @@ var currentSpatialResultIndex = 0;
 var geoJSONLayer;
 var spatialSearchResultsViewInitialized = false;
 var textSearchResultsViewInitialized = false;
+var greenIcon;

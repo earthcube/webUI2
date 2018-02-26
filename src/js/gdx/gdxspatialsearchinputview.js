@@ -17,7 +17,7 @@ function initializeSpatialSearchInputView(){
     }).addTo(inputMap);
     
     //Create an initial marker and set color to green for current location
-    var greenIcon = new L.Icon({
+    greenIcon = new L.Icon({
 	    	iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
 	    	shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
 	    	iconSize: [25, 41],
@@ -26,9 +26,6 @@ function initializeSpatialSearchInputView(){
 	    	shadowSize: [41, 41]
     });
 
-    //Add marker to map
-    marker = L.marker(currentLocation, {icon: greenIcon}).addTo(inputMap);
-    
     //Create fields for location entry
    	$("#spatialSearchInputLatField").jqxInput({height: componentHeight, width: '100%', theme: "darkblue"});
     $("#spatialSearchInputLonField").jqxInput({height: componentHeight, width: '100%', theme: "darkblue"});
@@ -76,6 +73,8 @@ function initializeSpatialSearchInputView(){
         theme: "darkblue"
     });
     
+    redrawInputMap();
+    
 }
 
 function badLocation(){
@@ -116,7 +115,6 @@ function spatialSearchInputUpdateButtonClicked(){
 	if(!badLocation()){
 		$("#spatialSearchInputLatField").jqxInput('val', parseFloat(lat).toFixed(precision));
     		$("#spatialSearchInputLonField").jqxInput('val', parseFloat(lon).toFixed(precision));
-		currentLocation = [lat, lon];
 		var latlng = L.latLng(lat, lon);
 		marker.setLatLng(latlng);
 		redrawInputMap();
@@ -199,10 +197,7 @@ function redrawInputMap(){
 	    	popupAnchor: [1, -34],
 	    	shadowSize: [41, 41]
     });
-
-    //Add marker to map
-    marker = L.marker([lat, lon], {icon: greenIcon}).addTo(inputMap);
-	
+    
 	//Remove all current markers
 	for(var i = 0; i<oldMarkers.length; i++){
 		inputMap.removeLayer(oldMarkers[i]);
@@ -212,6 +207,10 @@ function redrawInputMap(){
 	for(var i = 0; i<oldLines.length; i++){
 		inputMap.removeLayer(oldLines[i]);
 	}
+	
+	//Add marker to map
+    marker = L.marker([lat, lon], {icon: greenIcon}).addTo(inputMap);
+	oldMarkers.push(marker);
 	
 	//Create new markers for each location
 	var locations = $("#spatialSearchInputListBox").jqxListBox('getItems');
