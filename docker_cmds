@@ -1,0 +1,6 @@
+docker build -t p418webui2
+docker run -d p418webui2
+docker ps
+docker rm -f 728124b3e9f2
+docker run --name p418webui2 -d -p 8088:80 p418webui2
+docker port p418webui2
