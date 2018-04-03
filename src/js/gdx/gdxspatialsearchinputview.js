@@ -311,6 +311,8 @@ function setFitBoundsForInputMap(){
     swLocation = [swLocationLat, swLocationLon]
     neLocation = [neLocationLat, neLocationLon]
 
-    inputMap.fitBounds([swLocation, neLocation]);
+    var point = L.point(12, 12);
+    
+    inputMap.fitBounds([swLocation, neLocation], {padding: point});
     
 }

@@ -10,6 +10,7 @@ var WebServiceActions = {
 	GRAPH_RESDETAILS: 			6,
 	GRAPH_RESSETDETAILS: 		7, 
 	GRAPH_RESSETPEOPLE: 			8, 
+	GRAPH_DETAILS: 				9, 
 	
 	properties:{
 		0: {webServiceType: "GET",  urlSuffix: "textindex/search"},
@@ -20,7 +21,8 @@ var WebServiceActions = {
 		5: {webServiceType: "GET",  urlSuffix: "typeahead/providers"},
 		6: {webServiceType: "GET",  urlSuffix: "graph/resdetails"},
 		7: {webServiceType: "POST", urlSuffix: "graph/ressetdetails"},
-		8: {webServiceType: "POST", urlSuffix: "graph/ressetpeople"}
+		8: {webServiceType: "POST", urlSuffix: "graph/ressetpeople"},
+		9: {webServiceType: "GET",  urlSuffix: "graph/details"}
 	}
 }
 
