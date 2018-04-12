@@ -202,7 +202,13 @@ class SpatialResult{
 	
 	getCoordinatesAsString(){
 		var string = "";
-		for(var i=0; i<(this.coordinates.length-1); i++){
+		var length = 0;
+		if(this.type=="Point"){
+			length = this.coordinates.length;
+		}else if(this.type=="Polygon"){
+			length = this.coordinates.length-1
+		}
+		for(var i=0; i<length; i++){
 			var lat = this.coordinates[i][1];
 			var lon = this.coordinates[i][0];
 			string += "[" + lat + ", " + lon + "]";
