@@ -7,6 +7,20 @@ class MainData{
 		this.textResults = [];
 	}
 	
+	processDetails(data){
+		var s = data["S"];
+		var aname = data["Aname"];
+		var name = data["Name"];
+		var url = data["URL"];
+		var description = data["Description"];
+		var citation = data["Citation"];
+		var datePublished = data["Datepublished"];
+		var curl = data["Curl"];
+		var keywords = data["Keywords"];
+		var license = data["License"];
+		return new Details(s, aname, name, url, description, citation, datePublished, curl, keywords, license);
+	}
+	
 	processProviders(data){
 		for(var i=0; i<data.length; i++){
 			var index = 			data[i]["index"];
@@ -259,4 +273,96 @@ class TextResult{
 		return this.url;
 	}
 	
+}
+
+class Details{
+	
+	constructor(s, aname, name, url, description, citation, datePublished, curl, keywords, license){
+		this.s = s;
+		this.aname = aname;
+		this.name = name;
+		this.url = url;
+		this.description = description;
+		this.citation = citation;
+		this.datePublished = datePublished;
+		this.curl = curl;
+		this.keywords = keywords;
+		this.license = license;
+		
+		if(this.s==""){
+			this.s="Not Available"
+		}
+		
+		if(this.aname==""){
+			this.aname="Not Available"
+		}
+		
+		if(this.name==""){
+			this.name="Not Available"
+		}
+		
+		if(this.url==""){
+			this.url="Not Available"
+		}
+		
+		if(this.description==""){
+			this.description="Not Available"
+		}
+		
+		if(this.citation==""){
+			this.citation="Not Available"
+		}
+		
+		if(this.datePublished==""){
+			this.datePublished="Not Available"
+		}
+
+		if(this.keywords==""){
+			this.keywords="Not Available"
+		}
+		
+		if(this.license==""){
+			this.license="Not Available"
+		}
+	}
+	
+	getS(){
+		return this.s;
+	}
+	
+	getAname(){
+		return this.aname;
+	}
+	
+	getName(){
+		return this.name;
+	}
+	
+	getURL(){
+		return this.url;
+	}
+	
+	getDescription(){
+		return this.description;
+	}
+	
+	getCitation(){
+		return this.citation;
+	}
+	
+	getDatePublished(){
+		return this.datePublished;
+	}
+	
+	getCurl(){
+		return this.curl;
+	}
+	
+	getKeywords(){
+		return this.keywords;
+	}
+	
+	getLicense(){
+		return this.license;
+	}
 }

@@ -73,7 +73,7 @@ function updateResultDisplay(){
 	    					+ (currentSpatialResultIndex + 1) + " out of " + mainData.getSpatialResults().length
 	    					+ '</b></td></tr>'
 	    					+ '<tr><td>' 
-	    					+ '<b><a target="_blank" href="' + url + '">' + url + "</a></b>"
+	    					+ '<b><a target="_blank" href="../details.html?url=' + url + '">View Dataset Details</a></b>'
 	    					+ '</td></tr>' 
 	    					+ '<tr><td>Geometry: ' 
 	    					+ type
