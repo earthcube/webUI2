@@ -68,7 +68,7 @@ function initializeTextSearchResultsView(){
 		    					+ '<tr><td>Number of Results: ' 
 		    					+ numResults
 		    					+ '</td></tr>'
-		    					+ '<tr><td>High Score: ' 
+		    					+ '<tr><td>High Search Score: ' 
 		    					+ highScore
 		    					+ '</td></tr>'
 		    					+ '</table>';
@@ -121,7 +121,7 @@ function updateResultsListBox(provider){
 	    					+ '<tr><td>Position: ' 
 	    					+ (index + 1)
 	    					+ '</td></tr>'
-	    					+ '<tr><td>Score: ' 
+	    					+ '<tr><td>Search Score: ' 
 	    					+ score
 	    					+ '</td></tr>'
 	    					+ '</table>';
@@ -158,12 +158,12 @@ function updateResultsListBox2(){
 	    		var score = 		parseFloat(resultsListBoxDataRecord["Score"]).toFixed(5);
 	    		var table = '<table cellpadding="5">' 
 	    					+ '<tr><td>' 
-	    					+ '<b><a target="_blank" href="' + url + '">' + url + "</a></b>"
+	    					+ '<b><a target="_blank" href="../details.html?url=' + url + '">View Dataset Details</a></b>'
 	    					+ '</td></tr>' 
 	    					+ '<tr><td>Position: ' 
 	    					+ (index + 1)
 	    					+ '</td></tr>'
-	    					+ '<tr><td>Score: ' 
+	    					+ '<tr><td>Search Score: ' 
 	    					+ score
 	    					+ '</td></tr>'
 	    					+ '</table>';

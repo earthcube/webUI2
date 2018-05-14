@@ -32,9 +32,8 @@ function initializeSpatialSearchResultsView(){
 	}
 	
    	currentSpatialResultIndex = 0;
-    redrawResultsMap();
+   	redrawResultsMap();
     updateResultDisplay();
-    
 }
 
 function spatialSearchResultsPreviousButtonClicked(){
@@ -62,27 +61,30 @@ function spatialSearchResultsNextButtonClicked(){
 }
 
 function updateResultDisplay(){
-	
 	var spatialResult = mainData.getSpatialResults()[currentSpatialResultIndex];
 	var url = spatialResult.getURL();
-	var type = spatialResult.getType();
-	var coordinates = spatialResult.getCoordinatesAsString();
+	var spatialFeatures = spatialResult.getSpatialFeatures();
 	var displayElement = document.getElementById("spatialSearchResultsDisplayPanel");
-	var table = '<table cellpadding="5">'
-						+ '<tr><td><b>Result Number  ' 
-	    					+ (currentSpatialResultIndex + 1) + " out of " + mainData.getSpatialResults().length
-	    					+ '</b></td></tr>'
-	    					+ '<tr><td>' 
-	    					+ '<b><a target="_blank" href="../details.html?url=' + url + '">View Dataset Details</a></b>'
-	    					+ '</td></tr>' 
-	    					+ '<tr><td>Geometry: ' 
-	    					+ type
-	    					+ '</td></tr>'
-	    					+ '<tr><td>Coordinates: ' 
-	    					+ coordinates
-	    					+ '</td></tr>'
-	    					+ '</table>';
-	
+	var table = '<table cellpadding="2">'
+	table += '<tr><td><b>Result Number  '; 
+	table += (currentSpatialResultIndex + 1) + " out of " + mainData.getSpatialResults().length;
+	table += '</b></td></tr>';
+	table += '<tr><td>'; 
+	table += '<b><a target="_blank" href="../details.html?url=' + url + '">View Dataset Details</a></b>';
+	table += '</td></tr>'; 
+	table += '<tr><td>Features:</td></tr>'; 
+	for(var i = 0; i<spatialFeatures.length; i++){
+		spatialFeature = spatialFeatures[i];
+		var type = spatialFeature.getType();
+		var coordinates = spatialFeature.getCoordinatesAsString();
+		table += '<tr><td>Geometry - ';
+		table += type;
+		table += ', Coordinates - '; 
+		table += coordinates;
+		table += '</td></tr>';
+	} 
+	table += '</td></tr>';
+	table +=  '</table>';
 	displayElement.innerHTML = table;
 }
 
@@ -92,6 +94,15 @@ function gotoSpatialSearchInputView(){
 }
 
 function redrawResultsMap(){
+	
+	var greenIcon = new L.Icon({
+	    	iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+	    	shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+	    	iconSize: [25, 41],
+	    	iconAnchor: [12, 41],
+	    	popupAnchor: [1, -34],
+	    	shadowSize: [41, 41]
+    });
 	
 	//Remove all current markers
 	for(var i = 0; i<oldMarkers.length; i++){
@@ -103,9 +114,9 @@ function redrawResultsMap(){
 		resultsMap.removeLayer(oldLines[i]);
 	}
 	
-	//Remove current spatial result
-	if(geoJSONLayer){
-		resultsMap.removeLayer(geoJSONLayer);
+	//Remove all current spatial features
+	for(var i = 0; i<oldGeoJSONLayers.length; i++){
+		resultsMap.removeLayer(oldGeoJSONLayers[i]);
 	}
 	
 	//Create new markers for each location
@@ -160,10 +171,19 @@ function redrawResultsMap(){
 		}
 	
 	}
-	
+		
 	var spatialResults = mainData.getSpatialResults();
-    geoJSONLayer = L.geoJSON(spatialResults[currentSpatialResultIndex].getFeature()).addTo(resultsMap);
-    
+	spatialResult = spatialResults[currentSpatialResultIndex];
+	spatialFeatures = spatialResult.getSpatialFeatures();
+	for(var i = 0; i<spatialFeatures.length; i++){
+		geoJSONLayer = L.geoJSON(spatialFeatures[i].getFeature(), {
+			pointToLayer: function (feature, latlng) {
+		        return L.marker(latlng, {icon: greenIcon});
+		    }
+		}).addTo(resultsMap);
+		oldGeoJSONLayers.push(geoJSONLayer);
+	}
+
 	setFitBounds();
 	
 }
@@ -210,30 +230,36 @@ function setFitBounds(){
     }
     
     var spatialResult = mainData.getSpatialResults()[currentSpatialResultIndex];
-    var coordinates = spatialResult.getCoordinatesAsArray();
- 
-    for(var i=0; i<coordinates.length; i++){
-    	
-    		var lat = parseFloat(coordinates[i][1]);
-		var lon = parseFloat(coordinates[i][0]);
-		
-		if (lat < swLocationLat){
-			swLocationLat = parseFloat(lat);
-		}
-		
-		if (lon < swLocationLon){
-			swLocationLon = parseFloat(lon);
-		}
+    var spatialFeatures = spatialResult.getSpatialFeatures();
 
-		if (lat > neLocationLat){
-			neLocationLat = parseFloat(lat);
-		}
-		
-		if (lon > neLocationLon){
-			neLocationLon = parseFloat(lon);
-		}
+    for(var i=0; i<spatialFeatures.length; i++){
+
+    		var coordinates = spatialFeatures[i].getCoordinatesAsArray();
+
+	    	for(var j=0; j<coordinates.length; j++){
+	
+	    		var lat = parseFloat(coordinates[j][1]);
+	    		var lon = parseFloat(coordinates[j][0]);
+	
+	    		if (lat < swLocationLat){
+	    			swLocationLat = parseFloat(lat);
+	    		}
+	
+	    		if (lon < swLocationLon){
+	    			swLocationLon = parseFloat(lon);
+	    		}
+	
+	    		if (lat > neLocationLat){
+	    			neLocationLat = parseFloat(lat);
+	    		}
+	
+	    		if (lon > neLocationLon){
+	    			neLocationLon = parseFloat(lon);
+	    		}
+	    	}
+
     }
-    
+
     swLocation = [swLocationLat, swLocationLon]
     neLocation = [neLocationLat, neLocationLon]
     

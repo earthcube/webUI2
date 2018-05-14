@@ -50,10 +50,17 @@ class MainData{
 		for(var i=0; i<features.length; i++){
 			var feature = 		features[i];
 			var url = 			feature["properties"]["URL"];
+			var spatialResult = this.getSpatialResult(url);
+			if(spatialResult != null){
+				spatialResult = this.getSpatialResult(url);
+			}else{
+				spatialResult = new SpatialResult(url);
+				this.addSpatialResult(spatialResult);
+			}
 			var type = 			feature["geometry"]["type"];
 			var coordinates = 	feature["geometry"]["coordinates"];
-			var spatialResult = new SpatialResult(feature, url, type, coordinates);
-			this.addSpatialResult(spatialResult);
+			var spatialFeature = new SpatialFeature(feature, url, type, coordinates);
+			spatialResult.addSpatialFeature(spatialFeature);
 		}
 	}
 	
@@ -70,6 +77,20 @@ class MainData{
 	
 	addSpatialResult(spatialResult){
 		this.spatialResults.push(spatialResult);
+	}
+	
+	getSpatialResult(url){
+		for(var i=0; i<this.spatialResults.length; i++){
+			var spatialResult = this.spatialResults[i];
+			if(spatialResult.getURL() == url){
+				return spatialResult;
+			}
+		}
+		return null;
+	}
+	
+	getSpatialResults(){
+		return this.spatialResults;
 	}
 	
 	getSelectedProviderByIndex(index){
@@ -95,14 +116,6 @@ class MainData{
 	
 	getSelectedProviders(){
 		return this.selectedProviders;
-	}
-	
-	getSpatialResults(){
-		return this.spatialResults;
-	}
-	
-	addSpatialResult(spatialResult){
-		this.spatialResults.push(spatialResult);
 	}
 	
 	clearSpatialResults(){
@@ -179,15 +192,32 @@ class Provider{
 
 class SpatialResult{
 	
+	constructor(url){
+		this.url = url;
+		this.spatialFeatures = [];
+	}
+	
+	addSpatialFeature(spatialFeature){
+		this.spatialFeatures.push(spatialFeature);
+	}
+	
+	getURL(){
+		return this.url;
+	}
+	
+	getSpatialFeatures(){
+		return this.spatialFeatures;
+	}
+	
+}
+
+class SpatialFeature{
+	
 	constructor(feature, url, type, coordinates){
 		this.feature = feature;
 		this.url = url;
 		this.type = type;
 		this.coordinates = this.processCoordinates(coordinates);
-	}
-	
-	getFeature(){
-		return this.feature;
 	}
 	
 	processCoordinates(coordinates){
@@ -197,6 +227,10 @@ class SpatialResult{
 			coordinateArray.push([array[i], array[i+1]]);
 		}
 		return coordinateArray;
+	}
+	
+	getFeature(){
+		return this.feature;
 	}
 	
 	getURL(){
