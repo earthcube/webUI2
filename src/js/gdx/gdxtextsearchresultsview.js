@@ -109,7 +109,7 @@ function updateResultsListBox(provider){
     var resultsListBoxDataSource = {localdata: resultsListBoxData, datatype: "array"};
     var resultsListBoxDataAdapter = new $.jqx.dataAdapter(resultsListBoxDataSource);
     
-	$("#textSearchResultsResultsListBox").jqxListBox({ selectedIndex: 0, source: resultsListBoxDataAdapter, displayMember: "URL", valueMember: "URL", itemHeight: 100, 
+	$("#textSearchResultsResultsListBox").jqxListBox({ selectedIndex: 0, source: resultsListBoxDataAdapter, displayMember: "URL", valueMember: "URL", itemHeight: 125, 
 		renderer: function (index, label, value){
 	    		var resultsListBoxDataRecord = resultsListBoxData[index];
 	    		var url = 		resultsListBoxDataRecord["URL"];
@@ -118,6 +118,7 @@ function updateResultsListBox(provider){
 	    					+ '<tr><td>' 
 	    					+ '<b><a target="_blank" href="../details.html?url=' + url + '">View Dataset Details</a></b>'
 	    					+ '</td></tr>' 
+	    					+ '<tr><td><b><a target="_blank" href="' + url + '">' + url + '</a></b></td></tr>'
 	    					+ '<tr><td>Position: ' 
 	    					+ (index + 1)
 	    					+ '</td></tr>'
@@ -151,7 +152,7 @@ function updateResultsListBox2(){
     var resultsListBoxDataSource = {localdata: resultsListBoxData, datatype: "array"};
     var resultsListBoxDataAdapter = new $.jqx.dataAdapter(resultsListBoxDataSource);
     
-	$("#textSearchResultsResultsListBox2").jqxListBox({ selectedIndex: 0, source: resultsListBoxDataAdapter, displayMember: "URL", valueMember: "URL", itemHeight: 100, 
+	$("#textSearchResultsResultsListBox2").jqxListBox({ selectedIndex: 0, source: resultsListBoxDataAdapter, displayMember: "URL", valueMember: "URL", itemHeight: 125, 
 		renderer: function (index, label, value){
 	    		var resultsListBoxDataRecord = resultsListBoxData[index];
 	    		var url = 		resultsListBoxDataRecord["URL"];
@@ -160,6 +161,7 @@ function updateResultsListBox2(){
 	    					+ '<tr><td>' 
 	    					+ '<b><a target="_blank" href="../details.html?url=' + url + '">View Dataset Details</a></b>'
 	    					+ '</td></tr>' 
+	    					+ '<tr><td><b><a target="_blank" href="' + url + '">' + url + '</a></b></td></tr>'
 	    					+ '<tr><td>Position: ' 
 	    					+ (index + 1)
 	    					+ '</td></tr>'

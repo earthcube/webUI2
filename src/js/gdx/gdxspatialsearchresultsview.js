@@ -65,14 +65,17 @@ function updateResultDisplay(){
 	var url = spatialResult.getURL();
 	var spatialFeatures = spatialResult.getSpatialFeatures();
 	var displayElement = document.getElementById("spatialSearchResultsDisplayPanel");
-	var table = '<table cellpadding="2">'
-	table += '<tr><td><b>Result Number  '; 
+	var table = '<table cellpadding="8">'
+	table += '<tr><td align="center"><b>Result Number  '; 
 	table += (currentSpatialResultIndex + 1) + " out of " + mainData.getSpatialResults().length;
 	table += '</b></td></tr>';
-	table += '<tr><td>'; 
+	table += '<tr><td align="center">'; 
 	table += '<b><a target="_blank" href="../details.html?url=' + url + '">View Dataset Details</a></b>';
 	table += '</td></tr>'; 
-	table += '<tr><td>Features:</td></tr>'; 
+	table += '<tr><td align="center">'; 
+	table += '<b><a target="_blank" href="' + url + '">' + url + '</a></b>';
+	table += '</td></tr>'; 
+	table += '<tr><td><b>Features:</b></td></tr>'; 
 	for(var i = 0; i<spatialFeatures.length; i++){
 		spatialFeature = spatialFeatures[i];
 		var type = spatialFeature.getType();
