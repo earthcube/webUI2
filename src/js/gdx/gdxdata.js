@@ -44,6 +44,16 @@ class MainData{
 		}
 	}
 	
+	goodSelectedProviderTextResults(){
+		for(var i=0; i<this.selectedProviders.length; i++){
+			var provider = this.selectedProviders[i];
+			if(provider.getTextResults().length>0){
+				return true
+			}
+		}
+		return false;
+	}
+	
 	populateSpatialResults(data){
 		this.clearSpatialResults();
 		var features = data["features"]

@@ -59,6 +59,19 @@ function initializeTextSearchInputView(){
 		
 	});
    
+    //Create error window 
+    $('#gdxErrorWindow').jqxWindow({  
+    		title: 'Attention!',
+    		width: 400,
+        height: 140, 
+        resizable: true,
+        autoOpen: false,
+        isModal: true,
+        theme: "darkblue"
+    });
+    $("#gdxErrorWindowOKButton").jqxButton({ width: 75, height: 30, theme: "darkblue" });
+    $("#gdxErrorWindowOKButton").on("click", gdxErrorWindowOKButtonClicked);
+    
     //Create wait window 
     $('#gdxWaitWindow').jqxWindow({  
     		title: 'Please Wait...',
@@ -77,6 +90,10 @@ function initializeTextSearchInputView(){
     
 }
 
+function gdxErrorWindowOKButtonClicked(){
+	$('#gdxErrorWindow').jqxWindow('close');
+}
+
 function updateAfterTypeaheadProviders(data){
 	mainData.processProviders(data);
 	initializeIndexCheckBoxes();
@@ -90,12 +107,27 @@ function gotoTextSearchResultsView(){
 
 function updateAfterTextindexSearchset(data){
 	$('#gdxWaitWindow').jqxWindow('close');
-	mainData.populateSelectedProviderTextResults(data);
-	gotoTextSearchResultsView();
+	if(data == null){
+		document.getElementById("gdxErrorWindowMessage").innerHTML = "There are no results for the provided text search.";
+		$('#gdxErrorWindow').jqxWindow('open');
+	}else{
+		mainData.populateSelectedProviderTextResults(data);
+		if(mainData.goodSelectedProviderTextResults()){
+			gotoTextSearchResultsView();
+		}else{
+			document.getElementById("gdxErrorWindowMessage").innerHTML = "There are no results for the provided text search.";
+			$('#gdxErrorWindow').jqxWindow('open');
+		}
+	}
 }
 
 function updateAfterTextindexSearch(data){
 	$('#gdxWaitWindow').jqxWindow('close');
-	mainData.populateTextResults(data);
-	gotoTextSearchResultsView();
+	if(data == null){
+		document.getElementById("gdxErrorWindowMessage").innerHTML = "There are no results for the provided text search.";
+		$('#gdxErrorWindow').jqxWindow('open');
+	}else{
+		mainData.populateTextResults(data);
+		gotoTextSearchResultsView();
+	}
 }
