@@ -116,7 +116,7 @@ function updateResultsListBox(provider){
 	    		var score = 		parseFloat(resultsListBoxDataRecord["Score"]).toFixed(5);
 	    		var table = '<table cellpadding="5">' 
 	    					+ '<tr><td>' 
-	    					+ '<b><a target="_blank" href="../details.html?url=' + url + '">View Dataset Details</a></b>'
+	    					+ '<b><a target="_blank" href="details.html?url=' + url + '">View Dataset Details</a></b>'
 	    					+ '</td></tr>' 
 	    					+ '<tr><td><b><a target="_blank" href="' + url + '">' + url + '</a></b></td></tr>'
 	    					+ '<tr><td>Position: ' 
@@ -159,7 +159,7 @@ function updateResultsListBox2(){
 	    		var score = 		parseFloat(resultsListBoxDataRecord["Score"]).toFixed(5);
 	    		var table = '<table cellpadding="5">' 
 	    					+ '<tr><td>' 
-	    					+ '<b><a target="_blank" href="../details.html?url=' + url + '">View Dataset Details</a></b>'
+	    					+ '<b><a target="_blank" href="details.html?url=' + url + '">View Dataset Details</a></b>'
 	    					+ '</td></tr>' 
 	    					+ '<tr><td><b><a target="_blank" href="' + url + '">' + url + '</a></b></td></tr>'
 	    					+ '<tr><td>Position: ' 
