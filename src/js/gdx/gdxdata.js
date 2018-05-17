@@ -32,6 +32,12 @@ class MainData{
 	}
 	
 	populateSelectedProviderTextResults(data){
+		for(var i=0; i<this.selectedProviders.length; i++){
+			this.selectedProviders[i].clearTextResults();
+		}
+		for(var i=0; i<this.providers.length; i++){
+			this.providers[i].clearTextResults();
+		}
 		for(var i=0; i<data.length; i++){
 			var dataProviderIndex = 		data[i]["index"];
 			var dataProviderHighScore = 	data[i]["highscore"];

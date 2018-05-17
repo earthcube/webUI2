@@ -9,12 +9,6 @@ function initializeTextSearchResultsView(){
 		});
 	    
 		$("#textSearchResultsSplitter").jqxSplitter({  width: "100%", height: 600, panels: [{ size: '40%'}], theme: "darkblue" });
-		
-		$("#textSearchResultsProviderListBox").on("select", function (event) {
-   			var provider = selectedProvidersWithTextResults[event.args.index];
-			updateResultsListBox(provider);
-		});
-   	
    		$("#textSearchResultsResultsListBox").jqxListBox({ width: "100%", height: 600, theme: "darkblue" });
    		$("#textSearchResultsResultsListBox2").jqxListBox({ width: "100%", height: 600, theme: "darkblue" });
 		
@@ -26,13 +20,18 @@ function initializeTextSearchResultsView(){
 		document.getElementById("textSearchResultsSplitter").style.display = "grid";
 		document.getElementById("textSearchResultsResultsListBox2").style.display = "none";
 			
-		var selectedProvidersWithTextResults = [];
+		selectedProvidersWithTextResults = [];
 		for(var i=0; i<mainData.getSelectedProviders().length; i++){
 			var provider = mainData.getSelectedProviders()[i];
 			if(provider.getTextResults().length>0){
 				selectedProvidersWithTextResults.push(provider);
 			}
 		}
+		
+		$("#textSearchResultsProviderListBox").on("select", function (event) {
+			var provider = selectedProvidersWithTextResults[event.args.index];
+			updateResultsListBox(provider);
+		});
 		
 		var providerListBoxData = [];
 		for(var i=0; i<selectedProvidersWithTextResults.length; i++){
