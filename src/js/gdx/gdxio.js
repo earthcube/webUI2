@@ -39,8 +39,8 @@ function performWebServiceCall(webServiceAction, keyArray, valueArray, updateFun
 	//Set listener for call completion
     xmlhttp.onreadystatechange = function() {
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
-			//alert(xmlhttp.responseText);
 			var data = JSON.parse(xmlhttp.responseText);
+			//alert(xmlhttp.responseText);
 			//document.getElementById("output").innerHTML = JSON.stringify(data);
 			updateFunction(data);
 		}
@@ -57,7 +57,7 @@ function performWebServiceCall(webServiceAction, keyArray, valueArray, updateFun
 	}
 
 	//Set core domain name for request URL
-	var domainURL = "http://geodex.org/api/v1/";
+	var domainURL = "https://geodex.org/api/v1/";
 	
 	//Create request URL
 	var requestURL = domainURL;
