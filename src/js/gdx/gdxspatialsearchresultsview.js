@@ -70,7 +70,7 @@ function updateResultDisplay(){
 	table += (currentSpatialResultIndex + 1) + " out of " + mainData.getSpatialResults().length;
 	table += '</b></td></tr>';
 	table += '<tr><td align="center">'; 
-	table += '<b><a target="_blank" href="details.html?url=' + url + '">View Dataset Details</a></b>';
+	table += '<b><a target="_blank" href="details.html?url=' + encodeURIComponent(url) + '">View Dataset Details</a></b>';
 	table += '</td></tr>'; 
 	table += '<tr><td align="center">'; 
 	table += '<b><a target="_blank" href="' + url + '">' + url + '</a></b>';

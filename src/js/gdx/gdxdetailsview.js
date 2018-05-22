@@ -1,7 +1,7 @@
 function initializeDetailsView(){
 
 	url = getQueryVariable("url");
-    
+	
     //Call and get current providers list
     var keyArray = ["r"];
    	var valueArray = [url];
