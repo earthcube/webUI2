@@ -86,7 +86,7 @@ function updateResultDisplay(){
 		table += coordinates;
 		table += '</td></tr>';
 	} 
-	table += '</td></tr>';
+	//table += '</td></tr>';
 	table +=  '</table>';
 	displayElement.innerHTML = table;
 }
