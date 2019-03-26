@@ -22,7 +22,7 @@ function initializeTextSearchInputView(){
     //Add event listeners
     $('#textSearchInputSubmitButton').on('click', function (event) {
     	
-    		document.getElementById("gdxWaitWindowMessage").innerHTML = "Please wait while data is loaded from EarthCube.org.";
+    		document.getElementById("gdxWaitWindowMessage").innerHTML = "Please wait while data is loaded from GeoCODES.";
 		$('#gdxWaitWindow').jqxWindow('open');
     	
 		mainData.clearSelectedProviders();

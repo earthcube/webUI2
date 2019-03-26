@@ -145,7 +145,7 @@ function spatialSearchInputRemoveButtonClicked(){
 }
 
 function spatialSearchInputSubmitButtonClicked(){
-	document.getElementById("gdxWaitWindowMessage").innerHTML = "Please wait while data is loaded from EarthCube.org.";
+	document.getElementById("gdxWaitWindowMessage").innerHTML = "Please wait while data is loaded from GeoCODES.";
 	$('#gdxWaitWindow').jqxWindow('open');
 	var keyArray = ["geowithin"];
     	var valueArray = [getGeoJSONString()];

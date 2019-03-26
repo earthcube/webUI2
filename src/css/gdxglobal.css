@@ -3,71 +3,75 @@
 	grid-gap: 10px;
 	grid-template-columns: 500px 500px;
 	grid-template-rows: auto;
+	align-items: center;
 }
 
 .ec_logo{
-	background-image: url('../images/logo_earthcube_full_horizontal.png');
-	background-repeat: no-repeat;
-	height: 86px; 
-	width: 250px;
-	background-size: contain;
 	grid-column-start: 1;
   	grid-column-end: 2;
   	grid-row-start: 1;
   	grid-row-end: 2;
 }
 
-.p418TextSearchInputLabel{
-	margin-top: 20px;
-	font-size: 24px; 
-	font-family: Verdana; 
-	text-align: right;
+.geocodes_logo{
+	justify-self: end;
 	grid-column-start: 2;
   	grid-column-end: 3;
   	grid-row-start: 1;
   	grid-row-end: 2;
+}
+
+.p418TextSearchInputLabel{
+	margin-top: 0px;
+	font-size: 24px; 
+	font-family: Verdana; 
+	text-align: center;
+	grid-column-start: 1;
+  	grid-column-end: 3;
+  	grid-row-start: 2;
+  	grid-row-end: 3;
 }
 
 .p418TextSearchResultsLabel{
-	margin-top: 20px;
+	margin-top: 0px;
 	font-size: 24px; 
 	font-family: Verdana; 
-	text-align: right;
-	grid-column-start: 2;
+	text-align: center;
+	grid-column-start: 1;
   	grid-column-end: 3;
-  	grid-row-start: 1;
-  	grid-row-end: 2;
+  	grid-row-start: 2;
+  	grid-row-end: 3;
 }
 
 .p418DetailsViewLabel{
-	margin-top: 20px;
+	margin-top: 0px;
 	font-size: 24px; 
 	font-family: Verdana; 
-	text-align: right;
-	grid-column-start: 2;
+	text-align: center;
+	grid-column-start: 1;
   	grid-column-end: 3;
-  	grid-row-start: 1;
-  	grid-row-end: 2;
+  	grid-row-start: 2;
+  	grid-row-end: 3;
 }
 
 .p418SpatialSearchInputLabel{
-	margin-top: 20px;
+	margin-top: 0px;
 	font-size: 24px; 
 	font-family: Verdana; 
-	text-align: right;
-	grid-column-start: 2;
+	text-align: center;
+	grid-column-start: 1;
   	grid-column-end: 3;
-  	grid-row-start: 1;
-  	grid-row-end: 2;
+  	grid-row-start: 2;
+  	grid-row-end: 3;
 }
 
 .p418SpatialSearchResultsLabel{
-	margin-top: 20px;
+	margin-top: 0px;
 	font-size: 24px; 
 	font-family: Verdana; 
-	text-align: right;
-	grid-column-start: 2;
+	text-align: center;
+	grid-column-start: 1;
   	grid-column-end: 3;
-  	grid-row-start: 1;
-  	grid-row-end: 2;
+  	grid-row-start: 2;
+  	grid-row-end: 3;
 }
