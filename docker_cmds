@@ -1,2 +1,2 @@
-docker build -t geocodes_web_ui .
-docker run -d -p 80:80 geocodes_web_ui
+docker build -t nsfearthcube/geocodes_web_ui .
+docker run -d -p 80:80 nsfearthcube/geocodes_web_ui
