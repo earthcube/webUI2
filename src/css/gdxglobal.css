@@ -21,7 +21,7 @@
   	grid-row-end: 2;
 }
 
-.p418TextSearchInputLabel{
+.searchToolsLabel{
 	margin-top: 0px;
 	font-size: 24px; 
 	font-family: Verdana; 
@@ -32,7 +32,7 @@
   	grid-row-end: 3;
 }
 
-.p418TextSearchResultsLabel{
+.textSearchInputLabel{
 	margin-top: 0px;
 	font-size: 24px; 
 	font-family: Verdana; 
@@ -43,7 +43,7 @@
   	grid-row-end: 3;
 }
 
-.p418DetailsViewLabel{
+.textSearchResultsLabel{
 	margin-top: 0px;
 	font-size: 24px; 
 	font-family: Verdana; 
@@ -54,7 +54,7 @@
   	grid-row-end: 3;
 }
 
-.p418SpatialSearchInputLabel{
+.detailsViewLabel{
 	margin-top: 0px;
 	font-size: 24px; 
 	font-family: Verdana; 
@@ -65,7 +65,18 @@
   	grid-row-end: 3;
 }
 
-.p418SpatialSearchResultsLabel{
+.spatialSearchInputLabel{
+	margin-top: 0px;
+	font-size: 24px; 
+	font-family: Verdana; 
+	text-align: center;
+	grid-column-start: 1;
+  	grid-column-end: 3;
+  	grid-row-start: 2;
+  	grid-row-end: 3;
+}
+
+.spatialSearchResultsLabel{
 	margin-top: 0px;
 	font-size: 24px; 
 	font-family: Verdana; 
