@@ -57,7 +57,7 @@ function performWebServiceCall(webServiceAction, keyArray, valueArray, updateFun
 	}
 
 	//Set core domain name for request URL
-	var domainURL = "http://geodex.org/api/v1/";
+	var domainURL = "https://geodex.org/api/v1/";
 	
 	//Create request URL
 	var requestURL = domainURL;
