@@ -23,10 +23,12 @@ function initializeIndexCheckBoxes(){
  		newLabelDiv.innerHTML = provider.getName();
  		newLabelDiv.style.marginTop = "5px";
 		newLabelDiv.style.fontSize = "13px"; 
-		newLabelDiv.style.fontFamily = "Verdana"; 
+		newLabelDiv.style.fontFamily = "sans-serif"; 
 		newLabelDiv.style.textAlign = "left";
-		newLabelDiv.style.marginLeft = "70px";
- 		
+        newLabelDiv.style.marginLeft = "70px";
+        newLabelDiv.style.color = "#345a8d";
+        newLabelDiv.style.fontWeight = "bold";
+         
  		columnCounter++;
  		
  		if(columnCounter==8){
